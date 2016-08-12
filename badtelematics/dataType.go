@@ -2,366 +2,365 @@ package telematics
 
 import (
 	"encoding/binary"
-	"protocol/telematics/value"
 	"protocol/utils"
 	"time"
 )
 
-func (r *TelematicsReader) readData(t value.DataType) interface{} {
+func (r *TelematicsReader) readData(t DataType) interface{} {
 	switch t {
-	case value.Bool:
+	case Bool:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.SByte:
+	case SByte:
 		{
 			var v int8
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Byte:
+	case Byte:
 		{
 			var v byte
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Short:
+	case Short:
 		{
 			var v int16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.UShort:
+	case UShort:
 		{
 			var v uint16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Int24:
+	case Int24:
 		{
 			var v int32
-			r.ReadInt24(&v)
+			r.readInt24(&v)
 			return v
 		}
-	case value.UInt24:
+	case UInt24:
 		{
 			var v uint32
-			r.ReadUInt24(&v)
+			r.readUInt24(&v)
 			return v
 		}
-	case value.Int:
+	case Int:
 		{
 			var v int32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.UInt:
+	case UInt:
 		{
 			var v uint32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Long:
+	case Long:
 		{
 			var v int64
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.ULong:
+	case ULong:
 		{
 			var v uint64
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Float:
+	case Float:
 		{
 			var v float32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Double:
+	case Double:
 		{
 			var v float64
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.String:
+	case String:
 		{
-			return r.ReadString()
+			return r.readString()
 		}
-	case value.Binary:
+	case Binary:
 		{
-			return r.ReadBytes()
+			return r.readBytes()
 		}
-	case value.Identify:
+	case Identify:
 		{
-			return r.ReadBytes()
+			return r.readBytes()
 		}
-	case value.OpenClose:
-		{
-			var v bool
-			r.ReadBoolean(&v)
-			return v
-		}
-	case value.OnOff:
+	case OpenClose:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.YesNo:
+	case OnOff:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.IOPin:
+	case YesNo:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Tamper:
+	case IOPin:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Break:
+	case Tamper:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Ignition:
+	case Break:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Movement:
+	case Ignition:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Alarm:
+	case Movement:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Panic:
+	case Alarm:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Smoke:
+	case Panic:
 		{
 			var v bool
-			r.ReadBoolean(&v)
+			r.readBoolean(&v)
 			return v
 		}
-	case value.Frequency:
+	case Smoke:
+		{
+			var v bool
+			r.readBoolean(&v)
+			return v
+		}
+	case Frequency:
 		{
 			var v uint32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Analog:
+	case Analog:
 		{
 			var v uint32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			res := float64(v) / 1000.0
 			return res
 		}
-	case value.Timestamp:
+	case Timestamp:
 		{
 			var v uint32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return time.Unix(int64(v), 0)
 		}
-	case value.Timespan:
+	case Timespan:
 		{
 			var v int32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return time.Duration(v) * time.Second
 		}
-	case value.Temperature:
+	case Temperature:
 		{
 			var v int16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float32(v) / 10.0
 		}
-	case value.Humidity:
+	case Humidity:
 		{
 			var v uint16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float32(v) / 10.0
 		}
-	case value.Pressure:
+	case Pressure:
 		{
 			var v uint16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float32(v) * 100.0
 		}
-	case value.Weight:
+	case Weight:
 		{
 			var v uint16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float32(v) / 1000.0
 		}
-	case value.Loudness:
+	case Loudness:
 		{
 			var v byte
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return v
 		}
-	case value.Angle:
+	case Angle:
 		{
 			var v uint16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float32(v) / 100.0
 		}
-	case value.Speed:
+	case Speed:
 		{
 			var v uint16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float32(v) / 10.0
 		}
-	case value.Mileage:
+	case Mileage:
 		{
 			var v uint32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float64(v) / 1000.0
 		}
-	case value.Rpm:
+	case Rpm:
 		{
 			var v int16
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return int32(v * 10.0)
 		}
-	case value.EngineHours:
+	case EngineHours:
 		{
 			var v uint32
-			r.ReadUInt24(&v)
+			r.readUInt24(&v)
 			return v
 		}
-	case value.Distance:
+	case Distance:
 		{
 			var v uint32
 			binary.Read(r.Reader, binary.LittleEndian, &v)
 			return float64(v) / 1000.0
 		}
-	case value.COMMON:
+	case Common:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
+			v := CommonStruct{}
+			r.readCommonValue(&v)
 			return v
 		}
-	case value.Voltage:
+	case Voltage:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 1000.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 1000.0
 			return v
 		}
-	case value.Battery:
+	case Battery:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 1000.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 1000.0
 			return v
 		}
-	case value.Power:
+	case Power:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 1000.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 1000.0
 			return v
 		}
-	case value.Liquid:
+	case Liquid:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 10.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 10.0
 			return v
 		}
-	case value.Water:
+	case Water:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 10.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 10.0
 			return v
 		}
-	case value.Fuel:
+	case Fuel:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 10.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 10.0
 			return v
 		}
-	case value.Gas:
+	case Gas:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 1000.0
-			v.Meter = v.Meter / 1000.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 1000.0
+			v.meter = v.meter / 1000.0
 			return v
 		}
-	case value.Illuminance:
+	case Illuminance:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 100.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 100.0
 			return v
 		}
-	case value.Radiation:
+	case Radiation:
 		{
-			v := value.Common{}
-			r.ReadCommon(&v)
-			v.Value = v.Value / 10.0
-			v.Meter = v.Meter / 100.0
+			v := CommonStruct{}
+			r.readCommonValue(&v)
+			v.value = v.value / 10.0
+			v.meter = v.meter / 100.0
 			return v
 		}
-	case value.IOPort:
+	case IOPort:
 		{
-			v := value.IoPort{}
+			v := IoPortStruct{}
 			binary.Read(r.Reader, binary.LittleEndian, &v.Flags)
 			binary.Read(r.Reader, binary.LittleEndian, &v.State)
 			return v
 		}
-	case value.GPS:
+	case GPS:
 		{
-			v := value.Gps{}
-			r.ReadGps(&v)
+			v := GpsStruct{}
+			r.readGps(&v)
 			return v
 		}
-	case value.GSM:
+	case GSM:
 		{
-			v := value.Gsm{}
-			r.ReadGsm(&v)
+			v := GsmStruct{}
+			r.readGsm(&v)
 			return v
 		}
-	case value.ACCELERATION:
+	case Acceleration:
 		{
-			v := value.Acceleration{}
-			r.ReadAcceleration(&v)
+			v := AccelerationStruct{}
+			r.readAcceleration(&v)
 			return v
 		}
-	case value.RGB:
+	case Rgb:
 		{
-			v := value.Rgb{}
-			r.ReadRgb(&v)
+			v := RgbStruct{}
+			r.readRgb(&v)
 			return v
 		}
 	default:
@@ -370,315 +369,315 @@ func (r *TelematicsReader) readData(t value.DataType) interface{} {
 	panic("not implemented dataType")
 }
 
-func (w *TelematicsWriter) writeData(v interface{}, t value.DataType) {
+func (w *TelematicsWriter) writeData(v interface{}, t DataType) {
 	switch t {
-	case value.Bool:
+	case Bool:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.SByte:
+	case SByte:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(int8))
 		}
-	case value.Byte:
+	case Byte:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(byte))
 		}
-	case value.Short:
+	case Short:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(int16))
 		}
-	case value.UShort:
+	case UShort:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(uint16))
 		}
-	case value.Int24:
+	case Int24:
 		{
-			w.WriteInt24(v.(int32))
+			w.writeInt24(v.(int32))
 		}
-	case value.UInt24:
+	case UInt24:
 		{
-			w.WriteUInt24(v.(uint32))
+			w.writeUInt24(v.(uint32))
 		}
-	case value.Int:
+	case Int:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(int32))
 		}
-	case value.UInt:
+	case UInt:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(uint32))
 		}
-	case value.Long:
+	case Long:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(int64))
 		}
-	case value.ULong:
+	case ULong:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(uint64))
 		}
-	case value.Float:
+	case Float:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(float32))
 		}
-	case value.Double:
+	case Double:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(float64))
 		}
-	case value.String:
+	case String:
 		{
-			w.WriteString(v.(string))
+			w.writeString(v.(string))
 		}
-	case value.Binary:
+	case Binary:
 		{
-			w.WriteBytes(v.([]byte))
+			w.writeBytes(v.([]byte))
 		}
-	case value.Identify:
+	case Identify:
 		{
-			w.WriteBytes(v.([]byte))
+			w.writeBytes(v.([]byte))
 		}
-	case value.OpenClose:
+	case OpenClose:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.OnOff:
+	case OnOff:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.YesNo:
+	case YesNo:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.IOPin:
+	case IOPin:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Tamper:
+	case Tamper:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Break:
+	case Break:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Ignition:
+	case Ignition:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Movement:
+	case Movement:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Alarm:
+	case Alarm:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Panic:
+	case Panic:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Smoke:
+	case Smoke:
 		{
-			w.WriteBool(v.(bool))
+			w.writeBool(v.(bool))
 		}
-	case value.Frequency:
+	case Frequency:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(uint32))
 		}
-	case value.Analog:
+	case Analog:
 		{
 			analog := uint32(v.(float64) * 1000)
 			binary.Write(w.Writer, binary.LittleEndian, analog)
 		}
-	case value.Timestamp:
+	case Timestamp:
 		{
 			timestamp := uint32(v.(time.Time).Unix())
 			binary.Write(w.Writer, binary.LittleEndian, timestamp)
 		}
-	case value.Timespan:
+	case Timespan:
 		{
 			timespan := uint32(v.(time.Duration).Seconds())
 			binary.Write(w.Writer, binary.LittleEndian, timespan)
 		}
-	case value.Temperature:
+	case Temperature:
 		{
 			temperature := int16(v.(float32) * 10.0)
 			binary.Write(w.Writer, binary.LittleEndian, temperature)
 		}
-	case value.Humidity:
+	case Humidity:
 		{
 			humidity := uint16(v.(float32) * 10.0)
 			binary.Write(w.Writer, binary.LittleEndian, humidity)
 		}
-	case value.Pressure:
+	case Pressure:
 		{
 			pressure := uint16(v.(float32) / 100.0)
 			binary.Write(w.Writer, binary.LittleEndian, pressure)
 		}
-	case value.Weight:
+	case Weight:
 		{
 			weight := uint16(v.(float32) * 1000.0)
 			binary.Write(w.Writer, binary.LittleEndian, weight)
 		}
-	case value.Loudness:
+	case Loudness:
 		{
 			binary.Write(w.Writer, binary.LittleEndian, v.(byte))
 		}
-	case value.Angle:
+	case Angle:
 		{
 			//77.77 - bad value must be 7777 but it 7776!
 			angle := uint16(utils.Round(float64(v.(float32) * 100.0)))
 			binary.Write(w.Writer, binary.LittleEndian, angle)
 		}
-	case value.Speed:
+	case Speed:
 		{
 			speed := uint16(v.(float32) * 10.0)
 			binary.Write(w.Writer, binary.LittleEndian, speed)
 		}
-	case value.Mileage:
+	case Mileage:
 		{
 			mileage := uint32(v.(float64) * 1000.0)
 			binary.Write(w.Writer, binary.LittleEndian, mileage)
 		}
-	case value.Rpm:
+	case Rpm:
 		{
 			rpm := v.(int32) / 10.0
 			binary.Write(w.Writer, binary.LittleEndian, rpm)
 		}
-	case value.EngineHours:
+	case EngineHours:
 		{
-			w.WriteUInt24(v.(uint32))
+			w.writeUInt24(v.(uint32))
 		}
-	case value.Distance:
+	case Distance:
 		{
 			distance := uint32(v.(float64) * 1000.0)
 			binary.Write(w.Writer, binary.LittleEndian, distance)
 		}
-	case value.COMMON:
+	case Common:
 		{
-			value := v.(value.Common)
-			w.WriteCommon(&value)
+			value := v.(CommonStruct)
+			w.writeCommonValue(&value)
 		}
-	case value.Voltage:
+	case Voltage:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 1000.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Battery:
+	case Battery:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 1000.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Power:
+	case Power:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 1000.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Liquid:
+	case Liquid:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 10.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Water:
+	case Water:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 10.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Fuel:
+	case Fuel:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 10.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Gas:
+	case Gas:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 1000.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 1000.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Illuminance:
+	case Illuminance:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 100.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.Radiation:
+	case Radiation:
 		{
-			value := v.(value.Common)
+			value := v.(CommonStruct)
 			if value_value, ok := value.GetValue(); ok {
 				value.SetValue(value_value * 10.0)
 			}
 			if value_meter, ok := value.GetMeter(); ok {
 				value.SetMeter(value_meter * 100.0)
 			}
-			w.WriteCommon(&value)
+			w.writeCommonValue(&value)
 		}
-	case value.IOPort:
+	case IOPort:
 		{
-			value := v.(value.IoPort)
+			value := v.(IoPortStruct)
 			binary.Write(w.Writer, binary.LittleEndian, value.Flags)
 			binary.Write(w.Writer, binary.LittleEndian, value.State)
 		}
-	case value.GPS:
+	case GPS:
 		{
-			gps := v.(value.Gps)
-			w.WriteGps(&gps)
+			gps := v.(GpsStruct)
+			w.writeGps(&gps)
 		}
-	case value.GSM:
+	case GSM:
 		{
-			gsm := v.(value.Gsm)
-			w.WriteGsm(&gsm)
+			gsm := v.(GsmStruct)
+			w.writeGsm(&gsm)
 		}
-	case value.ACCELERATION:
+	case Acceleration:
 		{
-			acc := v.(value.Acceleration)
-			w.WriteAcceleration(&acc)
+			acc := v.(AccelerationStruct)
+			w.writeAcceleration(&acc)
 		}
-	case value.RGB:
+	case Rgb:
 		{
-			rgb := v.(value.Rgb)
-			w.WriteRgb(&rgb)
+			rgb := v.(RgbStruct)
+			w.writeRgb(&rgb)
 		}
 	default:
 		panic("not implemented dataType")

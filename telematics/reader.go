@@ -4,208 +4,198 @@ import (
 	"encoding/binary"
 	"fmt"
 	"io"
+	"protocol/telematics/value"
 	"protocol/utils"
 )
 
 type TelematicsReader struct {
-	reader   io.Reader
-	conf     *conf
-	checksum *Checksum
+	Reader   io.Reader
+	checksum utils.Checksum
+	buffer   [255]byte // skip buffer
 }
 
-func NewReader(r io.Reader, c *conf) *TelematicsReader {
-	if c == nil {
-		c = NewConfiguration()
-	}
-
-	checksum := NewChecksum()
-	reader := io.TeeReader(r, checksum)
-	return &TelematicsReader{reader: reader, conf: c, checksum: checksum}
+func (r *TelematicsReader) Configure(conf Configuration) {
+	r.checksum.Table(utils.CRC8)
+	r.Reader = io.TeeReader(r, r.checksum)
 }
 
 func (r *TelematicsReader) skip(c byte) {
-	b := make([]byte, c)
-	binary.Read(r.reader, binary.LittleEndian, b)
+	b := r.buffer[0:c]
+	binary.Read(r.Reader, binary.LittleEndian, b)
 }
 
 // общие методы чтения
-func (r *TelematicsReader) readBoolean(v *bool) {
+func (r *TelematicsReader) ReadBoolean(v *bool) {
 	var flag byte
-	binary.Read(r.reader, binary.LittleEndian, &flag)
+	binary.Read(r.Reader, binary.LittleEndian, &flag)
 	*v = flag == 1
 }
 
-func (r *TelematicsReader) readInt24(v *int32) {
+func (r *TelematicsReader) ReadInt24(v *int32) {
 	var buf [3]byte
-	binary.Read(r.reader, binary.LittleEndian, &buf)
+	binary.Read(r.Reader, binary.LittleEndian, &buf)
 	x := int(buf[0]) | (int(buf[1]) << 8) | (int(buf[2]) << 16)
 	if x&0x800000 > 0 {
 		x |= 0xff000000
 	} else {
 		x &= 0xffffff
 	}
-
 	*v = int32(x)
 }
 
-func (r *TelematicsReader) readUInt24(v *uint32) {
+func (r *TelematicsReader) ReadUInt24(v *uint32) {
 	var buf [3]byte
-	binary.Read(r.reader, binary.LittleEndian, &buf)
+	binary.Read(r.Reader, binary.LittleEndian, &buf)
 	x := uint(buf[0]) | (uint(buf[1]) << 8) | (uint(buf[2]) << 16)
 	if x&0x800000 > 0 {
 		x |= 0xff000000
 	} else {
 		x &= 0xffffff
 	}
-
 	*v = uint32(x)
 }
 
-func (r *TelematicsReader) readBytes() []byte {
+func (r *TelematicsReader) ReadBytes() []byte {
 	var c byte
-	binary.Read(r.reader, binary.LittleEndian, &c)
-	buf := make([]byte, c)
-	binary.Read(r.reader, binary.LittleEndian, buf)
+	binary.Read(r.Reader, binary.LittleEndian, &c)
+	buf := make([]byte, int(c))
+	binary.Read(r.Reader, binary.LittleEndian, buf)
 	return buf
 }
 
-func (r *TelematicsReader) readString() string {
-	return string(r.readBytes())
+func (r *TelematicsReader) ReadString() string {
+	return string(r.ReadBytes())
 }
 
 // специализированные методы чтения
-func (r *TelematicsReader) readCommonValue(v *CommonStruct) {
-	var f byte
-	binary.Read(r.reader, binary.LittleEndian, &f)
-	flags := utils.GetFlags8(f)
+func (r *TelematicsReader) ReadCommon(v *value.Common) {
+	binary.Read(r.Reader, binary.LittleEndian, &v.Flags8)
+	var flags [8]byte
+	v.Load(&flags)
 	for _, flag := range flags {
 		switch flag {
-		case COMMON_VALUE_FLAGS_STATE:
-			v.state_set = true
-			r.readBoolean(&v.state)
-		case COMMON_VALUE_FLAGS_PERCENTAGE:
-			v.percentage_set = true
-			binary.Read(r.reader, binary.LittleEndian, &v.percentage)
-		case COMMON_VALUE_FLAGS_VALUE:
-			v.value_set = true
+		case value.COMMON_FLAG_STATE:
+			r.ReadBoolean(&v.State)
+			v.Set(value.COMMON_FLAG_STATE, true)
+		case value.COMMON_FLAG_PERCENTAGE:
+			binary.Read(r.Reader, binary.LittleEndian, &v.Percentage)
+			v.Set(value.COMMON_FLAG_PERCENTAGE, true)
+		case value.COMMON_FLAG_VALUE:
 			var val int32
-			binary.Read(r.reader, binary.LittleEndian, &val)
-			v.value = float64(val)
-		case COMMON_VALUE_FLAGS_METER:
-			v.meter_set = true
+			binary.Read(r.Reader, binary.LittleEndian, &val)
+			v.Value = float64(val)
+			v.Set(value.COMMON_FLAG_VALUE, true)
+		case value.COMMON_FLAG_METER:
 			var val uint32
-			binary.Read(r.reader, binary.LittleEndian, &val)
-			v.meter = float64(val)
+			binary.Read(r.Reader, binary.LittleEndian, &val)
+			v.Meter = float64(val)
+			v.Set(value.COMMON_FLAG_METER, true)
 		default:
 			panic("not implemented")
 		}
 	}
 }
 
-func (r *TelematicsReader) readGps(v *GpsStruct) {
-	var f byte
-	binary.Read(r.reader, binary.LittleEndian, &f)
-	flags := utils.GetFlags8(f)
+func (r *TelematicsReader) ReadGps(v *value.Gps) {
+	binary.Read(r.Reader, binary.LittleEndian, &v.Flags8)
+	var flags [8]byte
+	v.Load(&flags)
 	for _, flag := range flags {
 		switch flag {
-		case GPSSTRUCT_FLAGS_LATLNG:
-			v.flags = v.flags | GPSSTRUCT_FLAGS_LATLNG
+		case value.GPS_FLAG_LATLNG:
 			var val int32
-			binary.Read(r.reader, binary.LittleEndian, &val)
-			v.latitude = float64(val) / 10000000.0
-			binary.Read(r.reader, binary.LittleEndian, &val)
-			v.longitude = float64(val) / 10000000.0
-		case GPSSTRUCT_FLAGS_ALTITUDE:
-			v.flags = v.flags | GPSSTRUCT_FLAGS_ALTITUDE
-			binary.Read(r.reader, binary.LittleEndian, &v.altitude)
-		case GPSSTRUCT_FLAGS_SPEED:
-			v.flags = v.flags | GPSSTRUCT_FLAGS_SPEED
-			binary.Read(r.reader, binary.LittleEndian, &v.speed)
-		case GPSSTRUCT_FLAGS_COURSE:
-			v.flags = v.flags | GPSSTRUCT_FLAGS_COURSE
-			binary.Read(r.reader, binary.LittleEndian, &v.course)
-			v.course = v.course * 2
-		case GPSSTRUCT_FLAGS_SATELLITES:
-			v.flags = v.flags | GPSSTRUCT_FLAGS_SATELLITES
-			binary.Read(r.reader, binary.LittleEndian, &v.sat)
+			binary.Read(r.Reader, binary.LittleEndian, &val)
+			v.Latitude = float64(val) / 10000000.0
+			binary.Read(r.Reader, binary.LittleEndian, &val)
+			v.Longitude = float64(val) / 10000000.0
+			v.Set(value.GPS_FLAG_LATLNG, true)
+		case value.GPS_FLAG_ALTITUDE:
+			v.Set(value.GPS_FLAG_ALTITUDE, true)
+			binary.Read(r.Reader, binary.LittleEndian, &v.Altitude)
+		case value.GPS_FLAG_SPEED:
+			v.Set(value.GPS_FLAG_SPEED, true)
+			binary.Read(r.Reader, binary.LittleEndian, &v.Speed)
+		case value.GPS_FLAG_COURSE:
+			v.Set(value.GPS_FLAG_COURSE, true)
+			binary.Read(r.Reader, binary.LittleEndian, &v.Course)
+			v.Course = v.Course * 2
+		case value.GPS_FLAG_SATELLITES:
+			v.Set(value.GPS_FLAG_SATELLITES, true)
+			binary.Read(r.Reader, binary.LittleEndian, &v.Sat)
 		default:
 			panic("gpsData flag not supported")
 		}
 	}
 }
 
-func (r *TelematicsReader) readGsm(v *GsmStruct) {
+func (r *TelematicsReader) ReadGsm(v *value.Gsm) {
 	var mcc_mnc int32
-	r.readInt24(&mcc_mnc)
+	r.ReadInt24(&mcc_mnc)
 	mcc_mnc_str := fmt.Sprintf("%d", mcc_mnc)
 	if len(mcc_mnc_str) < 3 {
-		v.mcc = mcc_mnc_str
-		v.mnc = "0"
-		if len(v.mcc) == 0 {
-			v.mcc = "0"
+		v.MCC = mcc_mnc_str
+		v.MNC = "0"
+		if len(v.MCC) == 0 {
+			v.MCC = "0"
 		}
 	} else {
-		v.mcc = mcc_mnc_str[:3]
-		v.mnc = mcc_mnc_str[3:]
+		v.MCC = mcc_mnc_str[:3]
+		v.MNC = mcc_mnc_str[3:]
 	}
 
-	binary.Read(r.reader, binary.LittleEndian, &v.lac)
-	binary.Read(r.reader, binary.LittleEndian, &v.cid)
-	binary.Read(r.reader, binary.LittleEndian, &v.signal)
+	binary.Read(r.Reader, binary.LittleEndian, &v.LAC)
+	binary.Read(r.Reader, binary.LittleEndian, &v.CID)
+	binary.Read(r.Reader, binary.LittleEndian, &v.Signal)
 }
 
-func (r *TelematicsReader) readAcceleration(v *AccelerationStruct) {
-	var f byte
-	binary.Read(r.reader, binary.LittleEndian, &f)
-	flags := utils.GetFlags8(f)
+func (r *TelematicsReader) ReadAcceleration(v *value.Acceleration) {
+	binary.Read(r.Reader, binary.LittleEndian, &v.Flags8)
+	var flags [8]byte
+	v.Load(&flags)
 	var axis int16
 	var mult float32 = 1000.0
 	for _, flag := range flags {
 		switch flag {
-		case ACCELERATION_FLAGS_X:
-			v.flags = v.flags | ACCELERATION_FLAGS_X
-			binary.Read(r.reader, binary.LittleEndian, &axis)
-			v.axisX = float32(axis) / mult
-		case ACCELERATION_FLAGS_Y:
-			v.flags = v.flags | ACCELERATION_FLAGS_Y
-			binary.Read(r.reader, binary.LittleEndian, &axis)
-			v.axisY = float32(axis) / mult
-		case ACCELERATION_FLAGS_Z:
-			v.flags = v.flags | ACCELERATION_FLAGS_Z
-			binary.Read(r.reader, binary.LittleEndian, &axis)
-			v.axisZ = float32(axis) / mult
-		case ACCELERATION_FLAGS_DURATION:
-			v.flags = v.flags | ACCELERATION_FLAGS_DURATION
-			binary.Read(r.reader, binary.LittleEndian, &v.duration)
+		case value.ACCELERATION_FLAG_X:
+			binary.Read(r.Reader, binary.LittleEndian, &axis)
+			v.AxisX = float32(axis) / mult
+		case value.ACCELERATION_FLAG_Y:
+			binary.Read(r.Reader, binary.LittleEndian, &axis)
+			v.AxisY = float32(axis) / mult
+		case value.ACCELERATION_FLAG_Z:
+			binary.Read(r.Reader, binary.LittleEndian, &axis)
+			v.AxisZ = float32(axis) / mult
+		case value.ACCELERATION_FLAG_DURATION:
+			binary.Read(r.Reader, binary.LittleEndian, &v.Duration)
 		default:
 			panic(fmt.Sprintf("acceleration flag %X not supported", flag))
 		}
 	}
 }
 
-func (r *TelematicsReader) readRgb(v *RgbStruct) {
-	binary.Read(r.reader, binary.LittleEndian, &v.r)
-	binary.Read(r.reader, binary.LittleEndian, &v.g)
-	binary.Read(r.reader, binary.LittleEndian, &v.b)
+func (r *TelematicsReader) ReadRgb(v *value.Rgb) {
+	binary.Read(r.Reader, binary.LittleEndian, &v.R)
+	binary.Read(r.Reader, binary.LittleEndian, &v.G)
+	binary.Read(r.Reader, binary.LittleEndian, &v.B)
 }
 
-func (r *TelematicsReader) readNameValue(dataType DataType) NameValue {
-	if dataType == NotSet {
+func (r *TelematicsReader) ReadNameValue(dataType value.DataType, v *value.NameValue)  {
+	if dataType == value.NotSet {
 		panic("type for read must be set")
 	}
 
-	v := NameValue{}
-	v.Name = r.readString()
+	v.Name = r.ReadString()
 	v.Value = r.readData(dataType)
 	return v
 }
 
-func (r *TelematicsReader) readNameValues(dataType DataType) []NameValue {
+func (r *TelematicsReader) ReadNameValues(dataType value.DataType) []value.NameValue {
 	var c byte
-	binary.Read(r.reader, binary.LittleEndian, &c)
-	result := make([]NameValue, c)
+	binary.Read(r.Reader, binary.LittleEndian, &c)
+	result := make([]value.NameValue, int(c))
 	for i := byte(0); i < c; i++ {
-		v := r.readNameValue(dataType)
+		var v value.NameValue
+		r.ReadNameValue(dataType, &v)
 		result = append(result, v)
 	}
 

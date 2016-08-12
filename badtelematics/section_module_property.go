@@ -1,5 +1,7 @@
 package telematics
 
+import "protocol/utils"
+
 // module property flags
 const (
 	MODULE_PROPERTY_FLAGS_MIN         byte = 0x01
@@ -22,7 +24,7 @@ const (
 )
 
 type modulePropertySection struct {
-	baseSection
+	utils.Flags8
 
 	ModuleId byte
 	Id       byte
@@ -36,8 +38,6 @@ type modulePropertySection struct {
 }
 
 type ModuleProperty interface {
-	Section
-
 	GetId() byte
 	SetId(id byte)
 

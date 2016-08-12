@@ -9,10 +9,12 @@ import (
 
 func Test_Packet_RequestAuthentication(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
+	r := TelematicsReader{}
+	r.Configure(Configuration{})
+
 	w := NewWriter(&buf, nil)
 
-	req := NewRequest()
+	req := Request{}
 	req.SetTimestamp(time.Now())
 	auth, _ := req.Authentication()
 	auth.SetIdentifier("777")
@@ -25,8 +27,8 @@ func Test_Packet_RequestAuthentication(t *testing.T) {
 	sup.Support(SECTION_IDENTIFICATION, true)
 	sup.Support(SECTION_MODULE, true)
 
-	w.WritePacket(req.(*requestStruct))
-	res := r.ReadPacket().(*requestStruct)
+	w.WriteRequest(req)
+	res := r.ReadPacket().(*Request)
 
 	if res.GetSequence() != req.GetSequence() {
 		t.Errorf("sequence wrong %v != %v", res.GetSequence(), req.GetSequence())
@@ -104,8 +106,8 @@ func Test_Packet_RequestConfiguration(t *testing.T) {
 	p12 := NewModuleProperty(2, m2)
 	conf.SetProperty(p12)
 	p12.SetName("property 1 2")
-	w.WritePacket(req.(*requestStruct))
-	res := r.ReadPacket().(*requestStruct)
+	w.WritePacket(req.(*Request))
+	res := r.ReadPacket().(*Request)
 
 	if res.GetSequence() != req.GetSequence() {
 		t.Errorf("sequence wrong %v != %v", res.GetSequence(), req.GetSequence())

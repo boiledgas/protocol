@@ -7,7 +7,7 @@ import (
 
 type ConfHolder struct {
 	hash byte
-	conf conf
+	conf Configuration
 }
 
 func NewHolder() *ConfHolder {
@@ -16,17 +16,17 @@ func NewHolder() *ConfHolder {
 	return holder
 }
 
-func (h *ConfHolder) Conf(c *conf) {
+func (h *ConfHolder) Conf(c *Configuration) {
 	if h.hash != c.hash {
 		copy_conf(&h.conf, c)
 	}
 }
 
-func (h *ConfHolder) SetConf(c *conf) {
+func (h *ConfHolder) SetConf(c *Configuration) {
 	copy_conf(c, &h.conf)
 }
 
-func copy_conf(src *conf, dst *conf) {
+func copy_conf(src *Configuration, dst *Configuration) {
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	dec := gob.NewDecoder(&buf)

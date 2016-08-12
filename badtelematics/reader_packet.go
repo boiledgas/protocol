@@ -12,104 +12,69 @@ const (
 
 func (r *TelematicsReader) ReadPacket() interface{} {
 	var pt byte
-	if err := binary.Read(r.reader, binary.BigEndian, &pt); err != nil {
+	if err := binary.Read(r.Reader, binary.BigEndian, &pt); err != nil {
 		panic(err)
 	}
 
 	switch pt {
 	case PACKET_TYPE_REQUEST:
-		return r.readRequest()
+		request := Request{}
+		return r.ReadRequest(&request)
 	case PACKET_TYPE_RESPONSE:
-		return r.readResponse()
+		response := Response{}
+		return r.ReadResponse(&response)
 	default:
 		panic(fmt.Sprintf("packet type %x not supported", pt))
 	}
 }
 
-func (r *TelematicsReader) readRequest() Request {
-	req := requestStruct{readonly: true}
+func (r *TelematicsReader) ReadRequest(req *Request) {
 	var v byte
-	binary.Read(r.reader, binary.LittleEndian, &v)
+	binary.Read(r.Reader, binary.LittleEndian, &v)
 	if v != 2 {
 		panic("version not supported")
 	}
 
-	if err := binary.Read(r.reader, binary.LittleEndian, &req.sequence); err != nil {
+	if err := binary.Read(r.Reader, binary.LittleEndian, &req.Sequence); err != nil {
 		panic("sequence")
 	}
-	if err := binary.Read(r.reader, binary.LittleEndian, &req.timestamp); err != nil {
+	if err := binary.Read(r.Reader, binary.LittleEndian, &req.Timestamp); err != nil {
 		panic("timestamp")
 	}
-	r.readSections(&req)
 
-	var crc byte
-	if err := binary.Read(r.reader, binary.LittleEndian, &crc); err != nil {
-		panic("crc")
-	}
-
-	delta := r.checksum.Compute()
-	if delta != 0 {
-		panic(fmt.Sprintf("checksum %X", crc))
-	}
-
-	return &req
-}
-
-func (r *TelematicsReader) readResponse() *Response {
-	p := Response{}
-	if err := binary.Read(r.reader, binary.LittleEndian, &p.Sequence); err != nil {
-		panic("sequence")
-	}
-	if err := binary.Read(r.reader, binary.LittleEndian, &p.Flags); err != nil {
-		panic("flags")
-	}
-	if err := binary.Read(r.reader, binary.LittleEndian, &p.Crc); err != nil {
-		panic("checksum")
-	}
-
-	return &p
-}
-
-func (r *TelematicsReader) readSections(req *requestStruct) {
-	exit := false
-	for !exit {
-		var t SectionType
-		binary.Read(r.reader, binary.LittleEndian, &t)
+	var t SectionType
+sections:
+	for {
+		binary.Read(r.Reader, binary.LittleEndian, &t)
 		switch t {
 		case SECTION_ENDOFPAYLOAD:
-			exit = true
+			break sections
 		case SECTION_IDENTIFICATION:
 			{
-				// проверка на уникальность секции
-				if id, ok := req.Identification(); !ok {
-					r.readIdentification(id.(*identificationSection))
-				} else {
+				if req.Has(SECTION_IDENTIFICATION) {
 					panic("identification exists")
 				}
+				r.ReadIdentification(&req.Id)
 			}
 		case SECTION_AUTHENTICATION:
 			{
-				// проверка на уникальность секции
-				if auth, ok := req.Authentication(); !ok {
-					r.readAuthentication(auth.(*authenticationSection))
-				} else {
+				if req.Has(SECTION_AUTHENTICATION) {
 					panic("authentication exists")
 				}
+				r.ReadAuthentication(&req.Auth)
 			}
 		case SECTION_SUPPORTED:
 			{
-				// проверка на уникальность секции
-				if sup, ok := req.Supported(); !ok {
-					r.readSupported(sup.(*supportedSection))
-				} else {
+				if req.Has(SECTION_SUPPORTED) {
 					panic("supported exists")
 				}
+				r.ReadSupported(&req.Sup)
 			}
 
 		case SECTION_MODULE:
 			{
-				m := &moduleSection{}
-				r.readModule(m)
+				m := &Module{}
+				r.ReadModule(m)
 				req.pushConf(m)
 			}
 		case SECTION_MODULE_PROPERTY:
@@ -153,44 +118,68 @@ func (r *TelematicsReader) readSections(req *requestStruct) {
 			panic("section not found")
 		}
 	}
+
+	var crc byte
+	if err := binary.Read(r.Reader, binary.LittleEndian, &crc); err != nil {
+		panic("crc")
+	}
+
+	delta := r.checksum.Compute()
+	if delta != 0 {
+		panic(fmt.Sprintf("checksum %X", crc))
+	}
 }
 
-func (r *TelematicsReader) readIdentification(s *identificationSection) {
-	binary.Read(r.reader, binary.LittleEndian, &s.flags)
+func (r *TelematicsReader) ReadResponse(response *Response) {
+	if err := binary.Read(r.Reader, binary.LittleEndian, &response.Sequence); err != nil {
+		panic("sequence")
+	}
+	if err := binary.Read(r.Reader, binary.LittleEndian, &response.Flags); err != nil {
+		panic("flags")
+	}
+	if err := binary.Read(r.Reader, binary.LittleEndian, &response.Crc); err != nil {
+		panic("checksum")
+	}
+}
+
+func (r *TelematicsReader) ReadIdentification(s *Identification) {
+	binary.Read(r.Reader, binary.LittleEndian, &s.Flags8)
 	codeText, code := false, false
-	for _, flag := range s.getFlags() {
+	var flags [8]uint8
+	s.Load(&flags)
+	for _, flag := range flags {
 		switch flag {
 		case IDENTIFICATION_FLAGS_CODE:
-			binary.Read(r.reader, binary.LittleEndian, &s.code)
+			binary.Read(r.Reader, binary.LittleEndian, &s.code)
 			code = true
 		case IDENTIFICATION_FLAGS_CODETEXT:
 			s.codeText = r.readString()
 			codeText = true
 		case IDENTIFICATION_FLAGS_DEVICETYPE:
-			binary.Read(r.reader, binary.LittleEndian, &s.deviceType)
+			binary.Read(r.Reader, binary.LittleEndian, &s.deviceType)
 		case IDENTIFICATION_FLAGS_FIRMWARE:
-			binary.Read(r.reader, binary.LittleEndian, &s.firmware)
+			binary.Read(r.Reader, binary.LittleEndian, &s.firmware)
 		case IDENTIFICATION_FLAGS_HARDWARE:
-			binary.Read(r.reader, binary.LittleEndian, &s.hardware)
+			binary.Read(r.Reader, binary.LittleEndian, &s.hardware)
 		case IDENTIFICATION_FLAGS_DEVICEHASH:
-			binary.Read(r.reader, binary.LittleEndian, &s.hash)
+			binary.Read(r.Reader, binary.LittleEndian, &s.hash)
 		default:
 			panic("flag not supported")
 		}
 	}
-
 	if code && codeText {
 		panic("model can't contain both Code and CodeText field")
 	}
-
 	if !code && !codeText {
 		panic("model must contain Code or CodeText field")
 	}
 }
 
-func (r *TelematicsReader) readAuthentication(s *authenticationSection) {
-	binary.Read(r.reader, binary.LittleEndian, &s.flags)
-	for _, flag := range s.getFlags() {
+func (r *TelematicsReader) ReadAuthentication(s *Authentication) {
+	binary.Read(r.Reader, binary.LittleEndian, &s.Flags8)
+	var flags [8]uint8
+	s.Load(&flags)
+	for _, flag := range flags {
 		switch flag {
 		case AUTHENTICATION_FLAGS_IDENTIFIER:
 			s.Identifier = r.readString()
@@ -202,36 +191,38 @@ func (r *TelematicsReader) readAuthentication(s *authenticationSection) {
 	}
 }
 
-func (r *TelematicsReader) readModule(m *moduleSection) {
-	binary.Read(r.reader, binary.LittleEndian, &m.flags)
-	binary.Read(r.reader, binary.LittleEndian, &m.Id)
-	for _, flag := range m.getFlags() {
+func (r *TelematicsReader) ReadModule(s *Module) {
+	binary.Read(r.Reader, binary.LittleEndian, &s.Flags8)
+	binary.Read(r.Reader, binary.LittleEndian, &s.Id)
+	var flags [8]uint8
+	s.Load(&flags)
+	for _, flag := range flags {
 		switch flag {
 		case MODULE_FLAGS_NAME:
-			m.Name = r.readString()
+			s.Name = r.readString()
 		case MODULE_FLAGS_DESCRIPTION:
-			m.Description = r.readString()
+			s.Description = r.readString()
 		default:
-			panic(fmt.Sprintf("flag not supported %v from %v", flag, m.flags))
+			panic(fmt.Sprintf("flag not supported %v from %v", flag, flags))
 		}
 	}
 }
 
 func (r *TelematicsReader) readModuleProperty(mp *modulePropertySection) {
-	binary.Read(r.reader, binary.LittleEndian, &mp.flags)
-	binary.Read(r.reader, binary.LittleEndian, &mp.ModuleId)
-	binary.Read(r.reader, binary.LittleEndian, &mp.Id)
-	binary.Read(r.reader, binary.LittleEndian, &mp.Type)
+	binary.Read(r.Reader, binary.LittleEndian, &mp.flags)
+	binary.Read(r.Reader, binary.LittleEndian, &mp.ModuleId)
+	binary.Read(r.Reader, binary.LittleEndian, &mp.Id)
+	binary.Read(r.Reader, binary.LittleEndian, &mp.Type)
 	for _, flag := range mp.getFlags() {
 		switch flag {
 		case MODULE_PROPERTY_FLAGS_MIN:
-			binary.Read(r.reader, binary.LittleEndian, &mp.Min)
+			binary.Read(r.Reader, binary.LittleEndian, &mp.Min)
 		case MODULE_PROPERTY_FLAGS_MAX:
-			binary.Read(r.reader, binary.LittleEndian, &mp.Max)
+			binary.Read(r.Reader, binary.LittleEndian, &mp.Max)
 		case MODULE_PROPERTY_FLAGS_LIST:
 			mp.List = r.readNameValues(mp.Type)
 		case MODULE_PROPERTY_FLAGS_ACCESS:
-			binary.Read(r.reader, binary.LittleEndian, &mp.Access)
+			binary.Read(r.Reader, binary.LittleEndian, &mp.Access)
 		case MODULE_PROPERTY_FLAGS_NAME:
 			mp.Name = r.readString()
 		case MODULE_PROPERTY_FLAGS_DESCRIPTION:
@@ -256,12 +247,12 @@ func (r *TelematicsReader) readModulePropertyValue(s *modulePropertyValueSection
 	}
 
 	s.values = make(map[byte]interface{})
-	binary.Read(r.reader, binary.LittleEndian, &s.moduleId)
+	binary.Read(r.Reader, binary.LittleEndian, &s.moduleId)
 	var c, i byte
-	binary.Read(r.reader, binary.LittleEndian, &c)
+	binary.Read(r.Reader, binary.LittleEndian, &c)
 	var id byte
 	for i = 0; i < c; i++ {
-		binary.Read(r.reader, binary.LittleEndian, &id)
+		binary.Read(r.Reader, binary.LittleEndian, &id)
 
 		var p ModuleProperty
 		if mpmap, e := r.conf.properties[s.moduleId]; e {
@@ -280,19 +271,19 @@ func (r *TelematicsReader) readModulePropertyValue(s *modulePropertyValueSection
 
 func (r *TelematicsReader) readModulePropertyDisable(s *ModulePropertyDisable) {
 	var c byte
-	binary.Read(r.reader, binary.LittleEndian, &c)
+	binary.Read(r.Reader, binary.LittleEndian, &c)
 	var id byte
 	for i := byte(0); i < c; i++ {
-		binary.Read(r.reader, binary.LittleEndian, &id)
+		binary.Read(r.Reader, binary.LittleEndian, &id)
 		v := r.readData(Byte)
 		s.DisabledProperties[id] = v.(byte)
 	}
 }
 
 func (r *TelematicsReader) readCommand(c *commandSection) {
-	binary.Read(r.reader, binary.LittleEndian, &c.flags)
-	binary.Read(r.reader, binary.LittleEndian, &c.moduleId)
-	binary.Read(r.reader, binary.LittleEndian, &c.id)
+	binary.Read(r.Reader, binary.LittleEndian, &c.flags)
+	binary.Read(r.Reader, binary.LittleEndian, &c.moduleId)
+	binary.Read(r.Reader, binary.LittleEndian, &c.id)
 	for _, flag := range c.getFlags() {
 		switch flag {
 		case COMMAND_FLAGS_NAME:
@@ -315,11 +306,11 @@ func (r *TelematicsReader) readCommand(c *commandSection) {
 }
 
 func (r *TelematicsReader) readCommandArgument(ca *commandArgumentStruct) {
-	binary.Read(r.reader, binary.LittleEndian, &ca.flags)
-	binary.Read(r.reader, binary.LittleEndian, &ca.moduleId)
-	binary.Read(r.reader, binary.LittleEndian, &ca.commandId)
-	binary.Read(r.reader, binary.LittleEndian, &ca.id)
-	binary.Read(r.reader, binary.LittleEndian, &ca.dataType)
+	binary.Read(r.Reader, binary.LittleEndian, &ca.flags)
+	binary.Read(r.Reader, binary.LittleEndian, &ca.moduleId)
+	binary.Read(r.Reader, binary.LittleEndian, &ca.commandId)
+	binary.Read(r.Reader, binary.LittleEndian, &ca.id)
+	binary.Read(r.Reader, binary.LittleEndian, &ca.dataType)
 
 	for _, flag := range ca.getFlags() {
 		switch flag {
@@ -330,7 +321,7 @@ func (r *TelematicsReader) readCommandArgument(ca *commandArgumentStruct) {
 		case COMMAND_ARGUMENT_FLAGS_LIST:
 			ca.list = r.readNameValues(ca.dataType)
 		case COMMAND_ARGUMENT_FLAGS_REQUIRED:
-			binary.Read(r.reader, binary.LittleEndian, &ca.required)
+			binary.Read(r.Reader, binary.LittleEndian, &ca.required)
 		case COMMAND_ARGUMENT_FLAGS_NAME:
 			ca.name = r.readString()
 		case COMMAND_ARGUMENT_FLAGS_DESCRIPTION:
@@ -358,8 +349,8 @@ func (r *TelematicsReader) readCommandExecute(ce *commandExecuteStruct) {
 
 	ce.Arguments = make(map[byte]interface{})
 
-	binary.Read(r.reader, binary.LittleEndian, &ce.ModuleId)
-	binary.Read(r.reader, binary.LittleEndian, &ce.CommandId)
+	binary.Read(r.Reader, binary.LittleEndian, &ce.ModuleId)
+	binary.Read(r.Reader, binary.LittleEndian, &ce.CommandId)
 	if _, e := r.conf.commands[ce.ModuleId]; !e {
 		panic("no module commands")
 	} else if _, e := r.conf.commands[ce.ModuleId][ce.CommandId]; !e {
@@ -367,10 +358,10 @@ func (r *TelematicsReader) readCommandExecute(ce *commandExecuteStruct) {
 	}
 
 	var c byte
-	binary.Read(r.reader, binary.LittleEndian, &c)
+	binary.Read(r.Reader, binary.LittleEndian, &c)
 	var id byte
 	for i := byte(0); i < c; i++ {
-		binary.Read(r.reader, binary.LittleEndian, &id)
+		binary.Read(r.Reader, binary.LittleEndian, &id)
 
 		var arg CommandArgument
 		if _, e := r.conf.arguments[ce.ModuleId]; e {
@@ -388,7 +379,7 @@ func (r *TelematicsReader) readCommandExecute(ce *commandExecuteStruct) {
 	}
 }
 
-func (r *TelematicsReader) readSupported(s *supportedSection) {
+func (r *TelematicsReader) ReadSupported(s *Supported) {
 	codes := r.readBytes()
 	s.Set(codes)
 }

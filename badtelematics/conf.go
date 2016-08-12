@@ -1,13 +1,10 @@
 package telematics
 
-import (
-	"fmt"
-	"protocol/telematics/section"
-)
+import "fmt"
 
 type modulesMap struct {
 	count byte
-	items [255]section.Module
+	items [255]Module
 }
 
 // Device configuration
@@ -15,11 +12,11 @@ type Configuration struct {
 	hash       byte
 	modules    modulesMap
 	prop_count uint16
-	properties map[byte]map[byte]section.ModuleProperty
+	properties map[byte]map[byte]ModuleProperty
 	cmd_count  uint16
-	commands   map[byte]map[byte]section.Command
+	commands   map[byte]map[byte]Command
 	arg_count  uint16
-	arguments  map[byte]map[byte]map[byte]section.CommandArgument
+	arguments  map[byte]map[byte]map[byte]CommandArgument
 }
 
 type Conf interface {

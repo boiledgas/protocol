@@ -7,21 +7,21 @@ import (
 
 func Test_Identification(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := TelematicsWriter{writer: &buf}
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
+	r.Configure(Configuration{})
 	codeText := "huizhu"
 	hash := byte(235)
 	deviceType := DEVICETYPE_APPLICATION
-	s := NewIdentification()
+	s := Identification{}
 	s.SetHash(hash)
 	s.SetCodeText(codeText)
 	s.SetDeviceType(deviceType)
 
-	w.writeIdentification(s.(*identificationSection))
-	res := identificationSection{}
-	r.readIdentification(&res)
-
+	w.WriteIdentification(s)
+	res := Identification{}
+	r.ReadIdentification(&res)
 	if val, ok := res.GetHash(); ok {
 		if hash != val {
 			t.Errorf("hash wrong: %s != %s", hash, val)
@@ -47,18 +47,18 @@ func Test_Identification(t *testing.T) {
 
 func Test_Authentication(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := TelematicsWriter{writer: &buf}
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	id := "myId"
 	secret := []byte{0x01, 0x02, 0x03, 0x04}
-	s := NewAuthentication()
+	s := Authentication{}
 	s.SetIdentifier(id)
 	s.SetSecret(secret)
 
-	w.writeAuthentication(s.(*authenticationSection))
-	res := authenticationSection{}
-	r.readAuthentication(&res)
+	w.writeAuthentication(s)
+	res := Authentication{}
+	r.ReadAuthentication(&res)
 
 	if val, ok := res.GetIdentifier(); ok {
 		if id != val {
@@ -78,8 +78,8 @@ func Test_Authentication(t *testing.T) {
 
 func Test_Module(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := TelematicsWriter{writer: &buf}
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	id := byte(1)
 	name := "moduleName"
@@ -88,8 +88,8 @@ func Test_Module(t *testing.T) {
 	s.SetName(name)
 	s.SetDesc(desc)
 
-	w.writeModule(s.(*moduleSection))
-	res := &moduleSection{}
+	w.writeModule(s.(*Module))
+	res := &Module{}
 	r.readModule(res)
 
 	if id != res.GetId() {
@@ -113,8 +113,8 @@ func Test_Module(t *testing.T) {
 
 func Test_ModuleProperty(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := TelematicsWriter{writer: &buf}
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	moduleId := byte(10)
 	m := NewModule(moduleId)
@@ -187,8 +187,8 @@ func Test_ModulePropertyValue(t *testing.T) {
 	conf.SetProperty(p2)
 
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, conf)
-	w := NewWriter(&buf, conf)
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	lat := 35.55
 	lng := 55.55
@@ -253,8 +253,8 @@ func Test_ModulePropertyDisabled(t *testing.T) {
 
 func Test_Command(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := TelematicsWriter{writer: &buf}
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	id := byte(1)
 	moduleId := byte(11)
@@ -293,8 +293,8 @@ func Test_Command(t *testing.T) {
 
 func Test_CommandArgument(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := NewWriter(&buf, nil)
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	module_id := byte(10)
 	m := NewModule(module_id)
@@ -378,8 +378,8 @@ func Test_CommandExecute(t *testing.T) {
 	s.SetArgument(arg2_id, arg2_value)
 
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, conf)
-	w := NewWriter(&buf, conf)
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	w.writeCommandExecute(s.(*commandExecuteStruct))
 	res := &commandExecuteStruct{}
@@ -409,8 +409,8 @@ func Test_CommandExecute(t *testing.T) {
 
 func Test_Supported(t *testing.T) {
 	buf := bytes.Buffer{}
-	r := NewReader(&buf, nil)
-	w := NewWriter(&buf, nil)
+	r := TelematicsReader{Reader: &buf}
+	w := TelematicsWriter{Writer: &buf}
 
 	s := NewSupported()
 	s.Support(SECTION_IDENTIFICATION, true)
@@ -418,9 +418,9 @@ func Test_Supported(t *testing.T) {
 	s.Support(SECTION_MODULE_PROPERTY, true)
 	s.Support(SECTION_MODULE_PROPERTY_VALUE, true)
 
-	w.writeSupported(s.(*supportedSection))
-	res := &supportedSection{}
-	r.readSupported(res)
+	w.writeSupported(s.(*Supported))
+	res := &Supported{}
+	r.ReadSupported(res)
 
 	if len(res.Get()) != 4 {
 		t.Errorf("section count: %v", len(res.Get()))

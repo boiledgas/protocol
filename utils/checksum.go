@@ -1,6 +1,4 @@
-package telematics
-
-import "bytes"
+package utils
 
 var CRC8 [256]byte = [256]byte{
 	0x00, 0x07, 0x0E, 0x09, 0x1C, 0x1B, 0x12, 0x15, 0x38, 0x3F, 0x36, 0x31, 0x24, 0x23, 0x2A, 0x2D,
@@ -22,31 +20,19 @@ var CRC8 [256]byte = [256]byte{
 }
 
 type Checksum struct {
-	table [256]byte
-	buf   bytes.Buffer
+	Table []byte
 	crc   byte
 }
 
 func (c *Checksum) Write(p []byte) (n int, err error) {
-	n, err = c.buf.Write(p)
 	for _, b := range p {
-		c.crc = c.table[c.crc^b]
+		c.crc = c.Table[c.crc^b]
 	}
-
 	return
 }
 
-func (c *Checksum) Bytes() []byte {
-	return c.buf.Bytes()
-}
-
 func (c *Checksum) Compute() byte {
-	crc := c.crc
-	c.crc = 0
-	c.buf.Reset()
+	var crc byte
+	crc, c.crc = c.crc, 0
 	return crc
-}
-
-func NewChecksum() *Checksum {
-	return &Checksum{buf: bytes.Buffer{}, table: CRC8}
 }
