@@ -4,33 +4,16 @@ import (
 	"protocol/utils"
 )
 
-type SectionType byte
-
-// section types
-const (
-	SECTION_ENDOFPAYLOAD             SectionType = 0xbb
-	SECTION_IDENTIFICATION           SectionType = 0x01
-	SECTION_AUTHENTICATION           SectionType = 0x02
-	SECTION_MODULE                   SectionType = 0x03
-	SECTION_MODULE_PROPERTY          SectionType = 0x04
-	SECTION_MODULE_PROPERTY_VALUE    SectionType = 0x05
-	SECTION_MODULE_PROPERTY_DISABLED SectionType = 0x06
-	SECTION_COMMAND                  SectionType = 0x07
-	SECTION_COMMAND_ARGUMENT         SectionType = 0x08
-	SECTION_COMMAND_EXECUTE          SectionType = 0x09
-	SECTION_SUPPORTED                SectionType = 0x0A
-)
-
 type Supported struct {
 	utils.Flags16
 }
 
-func (s *Supported) Support(sectionType SectionType, value bool) {
-	s.Set(sectionType.flag(), value)
+func (s *Supported) Support(sectionType Type, value bool) {
+	s.Set(sectionType.Flag(), value)
 }
 
-func (s *Supported) IsSupported(sectionType SectionType) bool {
-	return s.Has(sectionType.flag())
+func (s *Supported) IsSupported(sectionType Type) bool {
+	return s.Has(sectionType.Flag())
 }
 
 const (
@@ -46,7 +29,7 @@ const (
 	FLAG_COMMAND_EXECUTE          uint16 = 0x200
 )
 
-func (t SectionType) flag() uint16 {
+func (t Type) Flag() uint16 {
 	switch t {
 	case SECTION_IDENTIFICATION:
 		return FLAG_IDENTIFICATION
@@ -71,33 +54,33 @@ func (t SectionType) flag() uint16 {
 	default:
 		panic("section not supported")
 	}
-	return
+	return 0
 }
 
-func ToSectionType(flag uint16) SectionType {
+func ToSectionType(flag uint16) (t Type) {
 	switch flag {
-	case 0x01:
+	case FLAG_IDENTIFICATION:
 		t = SECTION_IDENTIFICATION
-	case 0x02:
+	case FLAG_AUTHENTICATION:
 		t = SECTION_AUTHENTICATION
-	case 0x04:
+	case FLAG_MODULE:
 		t = SECTION_MODULE
-	case 0x08:
+	case FLAG_MODULE_PROPERTY:
 		t = SECTION_MODULE_PROPERTY
-	case 0x10:
+	case FLAG_MODULE_PROPERTY_VALUE:
 		t = SECTION_MODULE_PROPERTY_VALUE
-	case 0x20:
+	case FLAG_MODULE_PROPERTY_DISABLED:
 		t = SECTION_MODULE_PROPERTY_DISABLED
-	case 0x40:
+	case FLAG_COMMAND:
 		t = SECTION_COMMAND
-	case 0x80:
+	case FLAG_COMMAND_ARGUMENT:
 		t = SECTION_COMMAND_ARGUMENT
-	case 0x100:
+	case FLAG_COMMAND_EXECUTE:
 		t = SECTION_COMMAND_EXECUTE
-	case 0x200:
+	case FLAG_SUPPORTED:
 		t = SECTION_SUPPORTED
 	default:
-		ok = false
+		t = SECTION_UNKNOWN
 	}
 
 	return

@@ -3,6 +3,7 @@ package section
 import (
 	"protocol/telematics/value"
 	"protocol/utils"
+	"fmt"
 )
 
 // module property flags
@@ -38,4 +39,8 @@ type ModuleProperty struct {
 	Access   PropertyAccess
 	Name     string
 	Desc     string
+}
+
+func (m ModuleProperty) String() string {
+	return fmt.Sprintf("{Id:%v; ModuleId:%v; Name:%v, Type:%v}", m.Id, m.ModuleId, m.Name, m.Type.String())
 }

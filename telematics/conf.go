@@ -1,206 +1,124 @@
 package telematics
 
 import (
-	"fmt"
 	"protocol/telematics/section"
+	"bytes"
 )
-
-type modulesMap struct {
-	count byte
-	items [255]section.Module
-}
 
 // Device configuration
 type Configuration struct {
-	hash       byte
-	modules    modulesMap
-	prop_count uint16
-	properties map[byte]map[byte]section.ModuleProperty
-	cmd_count  uint16
-	commands   map[byte]map[byte]section.Command
-	arg_count  uint16
-	arguments  map[byte]map[byte]map[byte]section.CommandArgument
+	Hash       byte
+	Modules    []section.Module
+	Properties []section.ModuleProperty
+	Commands   []section.Command
+	Arguments  []section.CommandArgument
 }
 
-type Conf interface {
-	Modules() []Module
-	Properties() []ModuleProperty
-	Commands() []Command
-	Arguments() []CommandArgument
-}
-
-func (c *Configuration) Reset() {
-	c.modules = modulesMap{}
-	c.properties = make(map[byte]map[byte]ModuleProperty)
-	c.commands = make(map[byte]map[byte]Command)
-	c.arguments = make(map[byte]map[byte]map[byte]CommandArgument)
-}
-
-func NewConfiguration() *Configuration {
-	c := Configuration{}
-	c.Reset()
-	return &c
-}
-
-func (c *Configuration) SetModule(m Module) {
-	mid := m.GetId()
-	if _, ok := c.modules.items[mid]; ok {
-		panic(fmt.Sprintf("module with id %d exists", mid))
-	}
-
-	c.modules.items[mid] = m
-}
-
-func (c *Configuration) GetModule(id byte) (m Module, ok bool) {
-	m, ok = c.modules.items[id]
-	return
-}
-
-func (c *Configuration) Modules() []Module {
-	r := make([]Module, 0, int(c.modules.count))
-	i := 0
-	for _, m := range c.modules.items {
-		if m != nil {
-			r[i] = m
-			i++
-		}
-	}
-	return r
-}
-
-func (c *Configuration) SetProperty(p ModuleProperty) {
-	mid := p.GetModuleId()
-	if c.modules.items[mid] == nil {
-		panic(fmt.Sprintf("module with id %d not found", mid))
-	}
-
-	if _, ok := c.properties[mid]; !ok {
-		c.properties[mid] = make(map[byte]ModuleProperty)
-	}
-
-	pid := p.GetId()
-	if _, ok := c.properties[mid][pid]; ok {
-		panic(fmt.Sprintf("module property with id %d exists", pid))
-	}
-
-	c.properties[mid][pid] = p
-	c.prop_count++
-}
-
-func (c *Configuration) GetProperty(mid byte, pid byte) (p ModuleProperty, ok bool) {
-	var pmap map[byte]ModuleProperty
-	if pmap, ok = c.properties[mid]; !ok {
-		return
-	}
-
-	p, ok = pmap[pid]
-	return
-}
-
-func (c *Configuration) Properties() []ModuleProperty {
-	r := make([]ModuleProperty, c.prop_count)
-	i := 0
-	for _, pmap := range c.properties {
-		for _, p := range pmap {
-			r[i] = p
-			i++
-		}
-	}
-	return r
-}
-
-func (c *Configuration) SetCommand(mc Command) {
-	mid := mc.GetModuleId()
-	if c.modules.items[mid] == nil {
-		panic(fmt.Sprintf("module with id %d not found", mid))
-	}
-
-	if _, ok := c.commands[mid]; !ok {
-		c.commands[mid] = make(map[byte]Command)
-	}
-
-	cid := mc.GetId()
-	if _, ok := c.properties[mid][cid]; ok {
-		panic(fmt.Sprintf("module command with id %d exists", cid))
-	}
-
-	c.commands[mid][cid] = mc
-	c.cmd_count++
-}
-
-func (c *Configuration) GetCommand(mid byte, cid byte) (mc Command, ok bool) {
-	var cmap map[byte]Command
-	if cmap, ok = c.commands[cid]; !ok {
-		return
-	}
-
-	mc, ok = cmap[cid]
-	return
-}
-
-func (c *Configuration) Commands() []Command {
-	r := make([]Command, c.cmd_count)
-	i := 0
-	for _, cmap := range c.commands {
-		for _, c := range cmap {
-			r[i] = c
-			i++
-		}
-	}
-	return r
-}
-
-func (c *Configuration) SetArgument(ca CommandArgument) {
-	mid := ca.GetModuleId()
-	cid := ca.GetCommandId()
-	if _, ok := c.commands[mid]; ok {
-		if _, ok := c.commands[mid][cid]; !ok {
-			panic(fmt.Sprintf("command with id %d not found", cid))
-		}
-	} else {
-		panic(fmt.Sprintf("command with id %d not found", cid))
-	}
-
-	if _, ok := c.arguments[mid]; !ok {
-		c.arguments[mid] = make(map[byte]map[byte]CommandArgument)
-	}
-	if _, ok := c.arguments[mid][cid]; !ok {
-		c.arguments[mid][cid] = make(map[byte]CommandArgument)
-	}
-
-	ca_id := ca.GetId()
-	if _, ok := c.arguments[mid][cid][ca_id]; ok {
-		panic(fmt.Sprintf("command argument with id %d exists", ca_id))
-	}
-
-	c.arguments[mid][cid][ca_id] = ca
-	c.arg_count++
-}
-
-func (c *Configuration) GetArgument(mid byte, cid byte, ca_id byte) (ca CommandArgument, ok bool) {
-	if _, ok = c.arguments[mid]; ok {
-		if _, ok = c.arguments[mid][cid]; ok {
-			if ca, ok = c.arguments[mid][cid][ca_id]; ok {
-				return
-			}
-		}
-	}
-
+func (c *Configuration) GetProperty(moduleId byte, propertyId byte, property *section.ModuleProperty) (ok bool) {
 	ok = false
+	for _, p := range c.Properties {
+		if p.ModuleId == moduleId && p.Id == propertyId {
+			*property = p
+			ok = true
+			break
+		}
+	}
 	return
 }
 
-func (c *Configuration) Arguments() []CommandArgument {
-	r := make([]CommandArgument, c.arg_count)
-	i := 0
-	for _, amap := range c.arguments {
-		for _, c := range amap {
-			for _, ca := range c {
-				r[i] = ca
-				i++
+func (c *Configuration) GetArgument(moduleId byte, commandId byte, argumentId byte, argument *section.CommandArgument) (ok bool) {
+	ok = false
+	for _, arg := range c.Arguments {
+		if arg.ModuleId == moduleId && arg.CommandId == commandId && arg.Id == argumentId {
+			*argument = arg
+			ok = true
+			break
+		}
+	}
+	return
+}
+
+func (c *Configuration) Validate() bool {
+	var modules map[byte]*section.Module
+	var module section.Module
+	for i := 0; i < len(c.Modules); i++ {
+		module = c.Modules[i]
+		if _, ok := modules[module.Id]; ok {
+			return false
+		}
+		modules[module.Id] = &c.Modules[i]
+		for j := i; j < len(c.Modules); j++ {
+			if module.Name == c.Modules[j].Name {
+				return false
 			}
 		}
 	}
-	return r
+	var properties map[byte]map[byte]*section.ModuleProperty
+	var property section.ModuleProperty
+	for i := 0; i < len(c.Properties); i++ {
+		property = c.Properties[i]
+		if _, ok := properties[property.ModuleId]; !ok {
+			properties[property.ModuleId] = make(map[byte]*section.ModuleProperty)
+		}
+		if _, ok := properties[property.ModuleId][property.Id]; ok {
+			return false
+		}
+		properties[property.ModuleId][property.Id] = &c.Properties[i]
+	}
 
+	var commands map[byte]map[byte]*section.Command
+	var command section.Command
+	for i := 0; i < len(c.Commands); i++ {
+		command = c.Commands[i]
+		if _, ok := commands[command.ModuleId]; !ok {
+			commands[command.ModuleId] = make(map[byte]*section.Command)
+		}
+		if _, ok := commands[command.ModuleId][command.Id]; ok {
+			return false
+		}
+		commands[command.ModuleId][command.Id] = &c.Commands[i]
+	}
+
+	var arguments map[byte]map[byte]map[byte]*section.CommandArgument
+	var argument section.CommandArgument
+	for i := 0; i < len(c.Arguments); i++ {
+		argument = c.Arguments[i]
+		if _, ok := arguments[argument.ModuleId]; !ok {
+			arguments[argument.ModuleId] = make(map[byte]map[byte]*section.CommandArgument)
+		}
+		if _, ok := arguments[argument.ModuleId][argument.CommandId]; !ok {
+			arguments[argument.ModuleId][argument.CommandId] = make(map[byte]*section.CommandArgument)
+		}
+		if _, ok := arguments[argument.ModuleId][argument.CommandId][argument.Id]; ok {
+			return false
+		}
+		arguments[argument.ModuleId][argument.CommandId][argument.Id] = &c.Arguments[i]
+	}
+	return true
+}
+
+func (s Configuration) String() string {
+	var buf bytes.Buffer
+	buf.WriteString("Configuration: {")
+	buf.WriteString("\nModules:[")
+	for _, m := range s.Modules {
+		buf.WriteString(m.String())
+	}
+	buf.WriteString("]")
+	buf.WriteString("\nProperties:[")
+	for _, p := range s.Properties {
+		buf.WriteString(p.String())
+	}
+	buf.WriteString("]")
+	buf.WriteString("\nCommands:[")
+	for _, c := range s.Commands {
+		buf.WriteString(c.String())
+	}
+	buf.WriteString("]")
+	buf.WriteString("\nArguments:[")
+	for _, a := range s.Arguments {
+		buf.WriteString(a.String())
+	}
+	buf.WriteString("]")
+	return buf.String()
 }

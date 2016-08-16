@@ -2,68 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afb94f4c-7cd9-4a2e-af01-937fba8f8a25" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/GOPATH__protocol_git_.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/conf.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/dataType.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/packet_request.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/reader.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/section.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/section_authentication.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/section_identification.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/section_module.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/section_supported.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/value_test.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/badtelematics/writer.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/reader_section.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/authentication.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/command.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/command_argument.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/command_execution.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/identification.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/module.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/module_property.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/module_property_value.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/supported.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/IoPort.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/acceleration.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/datatype.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/gps.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/gsm.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/name.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/value/rgb.go" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/telematics/packet_request.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/telematics/section.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/telematics/section_authentication.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/telematics/section_identification.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/telematics/section_module.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/telematics/section_supported.go" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/slice.go" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/checksum.go" afterPath="$PROJECT_DIR$/utils/checksum.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/conf_holder.go" afterPath="$PROJECT_DIR$/badtelematics/conf_holder.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/flags.go" afterPath="$PROJECT_DIR$/badtelematics/flags.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/packet.go" afterPath="$PROJECT_DIR$/badtelematics/packet.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/packet_test.go" afterPath="$PROJECT_DIR$/badtelematics/packet_test.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/reader_packet.go" afterPath="$PROJECT_DIR$/badtelematics/reader_packet.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/section_command.go" afterPath="$PROJECT_DIR$/badtelematics/section_command.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/section_command_argument.go" afterPath="$PROJECT_DIR$/badtelematics/section_command_argument.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/section_command_execution.go" afterPath="$PROJECT_DIR$/badtelematics/section_command_execution.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/section_module_property.go" afterPath="$PROJECT_DIR$/badtelematics/section_module_property.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/section_module_property_value.go" afterPath="$PROJECT_DIR$/badtelematics/section_module_property_value.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/section_test.go" afterPath="$PROJECT_DIR$/badtelematics/section_test.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/types.go" afterPath="$PROJECT_DIR$/badtelematics/types.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/value_acceleration.go" afterPath="$PROJECT_DIR$/badtelematics/value_acceleration.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/value_common.go" afterPath="$PROJECT_DIR$/telematics/value/common.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/value_gps.go" afterPath="$PROJECT_DIR$/badtelematics/value_gps.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/value_gsm.go" afterPath="$PROJECT_DIR$/badtelematics/value_gsm.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/value_rgb.go" afterPath="$PROJECT_DIR$/badtelematics/value_rgb.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/telematics/writer_packet.go" afterPath="$PROJECT_DIR$/badtelematics/writer_packet.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/main.go" afterPath="$PROJECT_DIR$/main/main.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/packet_test.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/request.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/response.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/module_property_disabled.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section/types.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/section_test.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/telematics/writer_packet.go" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/conf.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/conf_holder.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/dataType.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/flags.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/packet.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/packet_test.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/reader.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/reader_packet.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_authentication.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_command.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_command_argument.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_command_execution.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_identification.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_module.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_module_property.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_module_property_value.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/section_supported.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/types.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/value_acceleration.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/value_gps.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/value_gsm.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/value_rgb.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/value_test.go" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/badtelematics/writer.go" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/badtelematics/packet_request.go" afterPath="$PROJECT_DIR$/telematics/request.go" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/badtelematics/section_test.go" afterPath="$PROJECT_DIR$/telematics/section_test.go" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/badtelematics/writer_packet.go" afterPath="$PROJECT_DIR$/telematics/writer_packet.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/GOPATH__protocol_git_.xml" afterPath="$PROJECT_DIR$/.idea/libraries/GOPATH__protocol_git_.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/conf.go" afterPath="$PROJECT_DIR$/telematics/conf.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/dataType.go" afterPath="$PROJECT_DIR$/telematics/dataType.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/reader.go" afterPath="$PROJECT_DIR$/telematics/reader.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/reader_section.go" afterPath="$PROJECT_DIR$/telematics/reader_section.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/authentication.go" afterPath="$PROJECT_DIR$/telematics/section/authentication.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/command.go" afterPath="$PROJECT_DIR$/telematics/section/command.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/command_argument.go" afterPath="$PROJECT_DIR$/telematics/section/command_argument.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/command_execution.go" afterPath="$PROJECT_DIR$/telematics/section/command_execution.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/identification.go" afterPath="$PROJECT_DIR$/telematics/section/identification.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/module.go" afterPath="$PROJECT_DIR$/telematics/section/module.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/module_property.go" afterPath="$PROJECT_DIR$/telematics/section/module_property.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/module_property_value.go" afterPath="$PROJECT_DIR$/telematics/section/module_property_value.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/section/supported.go" afterPath="$PROJECT_DIR$/telematics/section/supported.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/value/datatype.go" afterPath="$PROJECT_DIR$/telematics/value/datatype.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/value/gps.go" afterPath="$PROJECT_DIR$/telematics/value/gps.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/value_test.go" afterPath="$PROJECT_DIR$/telematics/value_test.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telematics/writer.go" afterPath="$PROJECT_DIR$/telematics/writer.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/flags.go" afterPath="$PROJECT_DIR$/utils/flags.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/checksum.go" afterPath="$PROJECT_DIR$/utils/checksum.go" />
     </list>
     <ignored path="protocol.git.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,88 +77,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="identification.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/section/identification.go">
+      <file leaf-file-name="module_property.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/telematics/section/module_property.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-295">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="385">
+              <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="supported.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/section/supported.go">
+      <file leaf-file-name="datatype.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/telematics/value/datatype.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="151">
+              <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authentication.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/section/authentication.go">
+      <file leaf-file-name="packet_test.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/telematics/packet_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="15" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="command.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/section/command.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="command_argument.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/section/command_argument.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding>
-                <element signature="e#17#51#0" expanded="true" />
+                <element signature="e#20#130#0" expanded="true" />
+                <element signature="n#!!block;n#TestPacket1#0" expanded="false" />
+                <element signature="n#!!block;n#TestPacket2#0" expanded="false" />
+                <element signature="n#!!block;n#TestPacket3#0" expanded="false" />
+                <element signature="n#!!block;n#TestResponse#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="command_execution.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/section/command_execution.go">
+      <file leaf-file-name="request.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/telematics/request.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reader.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/telematics/reader.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+            <state relative-caret-position="187">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="13" />
               <folding>
-                <element signature="n#!!block;n#Configure#0" expanded="false" />
-                <element signature="n#!!block;n#skip#0" expanded="false" />
-                <element signature="n#!!block;n#ReadBoolean#0" expanded="false" />
-                <element signature="n#!!block;n#ReadInt24#0" expanded="false" />
-                <element signature="n#!!block;n#ReadUInt24#0" expanded="false" />
-                <element signature="n#!!block;n#ReadBytes#0" expanded="false" />
-                <element signature="n#!!block;n#ReadString#0" expanded="false" />
-                <element signature="n#!!block;n#ReadCommon#0" expanded="false" />
-                <element signature="n#!!block;n#ReadGps#0" expanded="false" />
-                <element signature="n#!!block;n#ReadGsm#0" expanded="false" />
-                <element signature="n#!!block;n#ReadAcceleration#0" expanded="false" />
-                <element signature="n#!!block;n#ReadRgb#0" expanded="false" />
-                <element signature="n#!!block;n#ReadNameValue#0" expanded="false" />
-                <element signature="n#!!block;n#ReadNameValues#0" expanded="false" />
+                <element signature="e#20#103#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,11 +128,9 @@
       <file leaf-file-name="writer.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/telematics/writer.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+            <state relative-caret-position="170">
+              <caret line="16" column="14" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="14" />
               <folding>
-                <element signature="e#137#193#0" expanded="false" />
-                <element signature="n#!!block;n#NewWriter#0" expanded="false" />
                 <element signature="n#!!block;n#WriteBool#0" expanded="false" />
                 <element signature="n#!!block;n#WriteInt24#0" expanded="false" />
                 <element signature="n#!!block;n#WriteUInt24#0" expanded="false" />
@@ -196,12 +148,79 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reader_section.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/telematics/reader_section.go">
+      <file leaf-file-name="dataType.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/telematics/dataType.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="211" column="58" selection-start-line="211" selection-start-column="58" selection-end-line="211" selection-end-column="58" />
-              <folding />
+            <state relative-caret-position="323">
+              <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+              <folding>
+                <element signature="e#187#247#0" expanded="false" />
+                <element signature="e#249#339#0" expanded="false" />
+                <element signature="e#341#430#0" expanded="false" />
+                <element signature="e#432#523#0" expanded="false" />
+                <element signature="e#525#618#0" expanded="false" />
+                <element signature="e#620#680#0" expanded="false" />
+                <element signature="e#682#745#0" expanded="false" />
+                <element signature="e#747#836#0" expanded="false" />
+                <element signature="n#!!block;n#WriteData#0" expanded="false" />
+                <element signature="e#5570#5610#0" expanded="false" />
+                <element signature="e#5612#5685#0" expanded="false" />
+                <element signature="e#5687#5759#0" expanded="false" />
+                <element signature="e#5761#5835#0" expanded="false" />
+                <element signature="e#5837#5913#0" expanded="false" />
+                <element signature="e#5915#5958#0" expanded="false" />
+                <element signature="e#5960#6006#0" expanded="false" />
+                <element signature="e#6008#6080#0" expanded="false" />
+                <element signature="e#6082#6156#0" expanded="false" />
+                <element signature="e#6158#6231#0" expanded="false" />
+                <element signature="e#6233#6308#0" expanded="false" />
+                <element signature="e#6310#6386#0" expanded="false" />
+                <element signature="e#6388#6465#0" expanded="false" />
+                <element signature="e#6467#6513#0" expanded="false" />
+                <element signature="e#6515#6560#0" expanded="false" />
+                <element signature="e#6562#6609#0" expanded="false" />
+                <element signature="e#6611#6656#0" expanded="false" />
+                <element signature="e#6658#6699#0" expanded="false" />
+                <element signature="e#6701#6742#0" expanded="false" />
+                <element signature="e#6744#6785#0" expanded="false" />
+                <element signature="e#6787#6829#0" expanded="false" />
+                <element signature="e#6831#6872#0" expanded="false" />
+                <element signature="e#6874#6918#0" expanded="false" />
+                <element signature="e#6920#6964#0" expanded="false" />
+                <element signature="e#6966#7007#0" expanded="false" />
+                <element signature="e#7009#7050#0" expanded="false" />
+                <element signature="e#7052#7093#0" expanded="false" />
+                <element signature="e#7095#7174#0" expanded="false" />
+                <element signature="e#7176#7287#0" expanded="false" />
+                <element signature="e#7289#7411#0" expanded="false" />
+                <element signature="e#7413#7539#0" expanded="false" />
+                <element signature="e#7541#7666#0" expanded="false" />
+                <element signature="e#7668#7785#0" expanded="false" />
+                <element signature="e#7787#7905#0" expanded="false" />
+                <element signature="e#7907#8020#0" expanded="false" />
+                <element signature="e#8022#8098#0" expanded="false" />
+                <element signature="e#8100#8279#0" expanded="false" />
+                <element signature="e#8281#8389#0" expanded="false" />
+                <element signature="e#8391#8507#0" expanded="false" />
+                <element signature="e#8509#8601#0" expanded="false" />
+                <element signature="e#8603#8654#0" expanded="false" />
+                <element signature="e#8656#8775#0" expanded="false" />
+                <element signature="e#8777#8847#0" expanded="false" />
+                <element signature="e#8849#9148#0" expanded="false" />
+                <element signature="e#9150#9449#0" expanded="false" />
+                <element signature="e#9451#9748#0" expanded="false" />
+                <element signature="e#9750#10046#0" expanded="false" />
+                <element signature="e#10048#10343#0" expanded="false" />
+                <element signature="e#10345#10639#0" expanded="false" />
+                <element signature="e#10641#10936#0" expanded="false" />
+                <element signature="e#10938#11126#0" expanded="false" />
+                <element signature="e#11128#11426#0" expanded="false" />
+                <element signature="e#11428#11592#0" expanded="false" />
+                <element signature="e#11594#11651#0" expanded="false" />
+                <element signature="e#11653#11710#0" expanded="false" />
+                <element signature="e#11712#11796#0" expanded="false" />
+                <element signature="e#11798#11855#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -228,9 +247,6 @@
       <list>
         <option value="$PROJECT_DIR$/telematics/checksum.go" />
         <option value="$PROJECT_DIR$/telematics/section_identification.go" />
-        <option value="$PROJECT_DIR$/telematics/writer_packet.go" />
-        <option value="$PROJECT_DIR$/telematics/packet_test.go" />
-        <option value="$PROJECT_DIR$/telematics/section_test.go" />
         <option value="$PROJECT_DIR$/telematics/section_authentication.go" />
         <option value="$PROJECT_DIR$/telematics/section_module.go" />
         <option value="$PROJECT_DIR$/telematics/reader_packet.go" />
@@ -249,27 +265,37 @@
         <option value="$PROJECT_DIR$/telematics/value/IoPort.go" />
         <option value="$PROJECT_DIR$/telematics/section_command.go" />
         <option value="$PROJECT_DIR$/telematics/section_module_property.go" />
-        <option value="$PROJECT_DIR$/telematics/section/authentication.go" />
-        <option value="$PROJECT_DIR$/telematics/section/module_property_value.go" />
-        <option value="$PROJECT_DIR$/telematics/value/datatype.go" />
-        <option value="$PROJECT_DIR$/telematics/dataType.go" />
-        <option value="$PROJECT_DIR$/telematics/conf.go" />
-        <option value="$PROJECT_DIR$/telematics/section/command.go" />
-        <option value="$PROJECT_DIR$/telematics/section/command_argument.go" />
-        <option value="$PROJECT_DIR$/telematics/section/command_execution.go" />
-        <option value="$PROJECT_DIR$/telematics/section/module.go" />
         <option value="$PROJECT_DIR$/telematics/value/acceleration.go" />
         <option value="$PROJECT_DIR$/telematics/value/common.go" />
         <option value="$PROJECT_DIR$/telematics/value/value_test.go" />
         <option value="$PROJECT_DIR$/telematics/value_test.go" />
-        <option value="$PROJECT_DIR$/telematics/value/gps.go" />
-        <option value="$PROJECT_DIR$/telematics/writer.go" />
-        <option value="$PROJECT_DIR$/telematics/reader.go" />
+        <option value="$PROJECT_DIR$/badtelematics/packet_request.go" />
+        <option value="$PROJECT_DIR$/badtelematics/packet.go" />
+        <option value="$PROJECT_DIR$/telematics/section/types.go" />
         <option value="$PROJECT_DIR$/utils/checksum.go" />
-        <option value="$PROJECT_DIR$/telematics/section/identification.go" />
+        <option value="$PROJECT_DIR$/badtelematics/section_supported.go" />
+        <option value="$PROJECT_DIR$/telematics/reader.go" />
         <option value="$PROJECT_DIR$/telematics/section/supported.go" />
+        <option value="$PROJECT_DIR$/telematics/section_test.go" />
+        <option value="$PROJECT_DIR$/telematics/section/identification.go" />
+        <option value="$PROJECT_DIR$/telematics/section/authentication.go" />
+        <option value="$PROJECT_DIR$/telematics/section/command_execution.go" />
+        <option value="$PROJECT_DIR$/telematics/section/module_property_disabled.go" />
+        <option value="$PROJECT_DIR$/telematics/dataType.go" />
+        <option value="$PROJECT_DIR$/telematics/value/datatype.go" />
+        <option value="$PROJECT_DIR$/telematics/section/module.go" />
+        <option value="$PROJECT_DIR$/telematics/section/command.go" />
         <option value="$PROJECT_DIR$/telematics/section/module_property.go" />
+        <option value="$PROJECT_DIR$/telematics/section/command_argument.go" />
+        <option value="$PROJECT_DIR$/telematics/conf.go" />
         <option value="$PROJECT_DIR$/telematics/reader_section.go" />
+        <option value="$PROJECT_DIR$/telematics/section/module_property_value.go" />
+        <option value="$PROJECT_DIR$/telematics/value/gps.go" />
+        <option value="$PROJECT_DIR$/telematics/request.go" />
+        <option value="$PROJECT_DIR$/telematics/writer.go" />
+        <option value="$PROJECT_DIR$/telematics/writer_packet.go" />
+        <option value="$PROJECT_DIR$/telematics/response.go" />
+        <option value="$PROJECT_DIR$/telematics/packet_test.go" />
       </list>
     </option>
   </component>
@@ -307,6 +333,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -325,79 +352,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="telematics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="telematics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="value" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="telematics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="section" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="protocol" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="badtelematics" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../receiver" />
     <property name="go.libraries.notification.had.been.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -405,6 +367,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\Go\src\protocol\telematics" />
       <recent name="C:\Workspace\Go\src\protocol\telematics" />
       <recent name="C:\Workspace\Go\src\protocol\telematics\value" />
     </key>
@@ -415,20 +378,49 @@
       <recent name="C:\Workspace\Go\src\protocol\utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Test.Test_Bool in value_test.go">
-    <configuration default="false" name="go run main.go" type="GoRunFileConfiguration" factoryName="Go Single File" temporary="true">
+  <component name="RunManager" selected="Go Test.TestResponse in packet_test.go">
+    <configuration default="false" name="section_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
       <module name="protocol.git" />
       <working_directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/main/main.go" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/telematics/section_test.go" />
       <method />
     </configuration>
-    <configuration default="false" name="Test_Bool in value_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+    <configuration default="false" name="TestPacket1 in packet_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
       <module name="protocol.git" />
       <working_directory value="$PROJECT_DIR$/" />
       <framework value="gotest" />
       <kind value="PACKAGE" />
       <package value="protocol/telematics" />
-      <pattern value="^Test_Bool$" />
+      <pattern value="^TestPacket1$" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestPacket2 in packet_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+      <module name="protocol.git" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="protocol/telematics" />
+      <pattern value="^TestPacket2$" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestPacket3 in packet_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+      <module name="protocol.git" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="protocol/telematics" />
+      <pattern value="^TestPacket3$" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestResponse in packet_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true">
+      <module name="protocol.git" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="protocol/telematics" />
+      <pattern value="^TestResponse$" />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -648,14 +640,20 @@
       <listeners />
       <method />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Go Single File.go run main.go" />
-      <item index="1" class="java.lang.String" itemvalue="Go Test.Test_Bool in value_test.go" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Go Test.section_test.go" />
+      <item index="1" class="java.lang.String" itemvalue="Go Test.TestPacket1 in packet_test.go" />
+      <item index="2" class="java.lang.String" itemvalue="Go Test.TestPacket2 in packet_test.go" />
+      <item index="3" class="java.lang.String" itemvalue="Go Test.TestPacket3 in packet_test.go" />
+      <item index="4" class="java.lang.String" itemvalue="Go Test.TestResponse in packet_test.go" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Go Test.Test_Bool in value_test.go" />
-        <item index="1" class="java.lang.String" itemvalue="Go Single File.go run main.go" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Go Test.TestResponse in packet_test.go" />
+        <item index="1" class="java.lang.String" itemvalue="Go Test.TestPacket3 in packet_test.go" />
+        <item index="2" class="java.lang.String" itemvalue="Go Test.TestPacket2 in packet_test.go" />
+        <item index="3" class="java.lang.String" itemvalue="Go Test.TestPacket1 in packet_test.go" />
+        <item index="4" class="java.lang.String" itemvalue="Go Test.section_test.go" />
       </list>
     </recent_temporary>
   </component>
@@ -676,20 +674,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_Bool_in_value_test_go - 2016.08.12 at 14h 04m 13s.xml">
-      <configuration name="Test_Bool in value_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestPacket3_in_packet_test_go - 2016.08.16 at 14h 31m 47s.xml">
+      <configuration name="TestPacket3 in packet_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Test_Bool_in_value_test_go - 2016.08.12 at 14h 04m 20s.xml">
-      <configuration name="Test_Bool in value_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestPacket3_in_packet_test_go - 2016.08.16 at 15h 02m 07s.xml">
+      <configuration name="TestPacket3 in packet_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Test_Bool_in_value_test_go - 2016.08.12 at 20h 04m 41s.xml">
-      <configuration name="Test_Bool in value_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestPacket3_in_packet_test_go - 2016.08.16 at 15h 03m 28s.xml">
+      <configuration name="TestPacket3 in packet_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Test_Bool_in_value_test_go - 2016.08.12 at 20h 04m 54s.xml">
-      <configuration name="Test_Bool in value_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestPacket3_in_packet_test_go - 2016.08.16 at 15h 03m 38s.xml">
+      <configuration name="TestPacket3 in packet_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
-    <history-entry file="Test_Bool_in_value_test_go - 2016.08.12 at 20h 05m 08s.xml">
-      <configuration name="Test_Bool in value_test.go" configurationId="GoTestRunConfiguration" />
+    <history-entry file="TestPacket3_in_packet_test_go - 2016.08.16 at 15h 03m 50s.xml">
+      <configuration name="TestPacket3 in packet_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestResponse_in_packet_test_go - 2016.08.16 at 15h 30m 37s.xml">
+      <configuration name="TestResponse in packet_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestResponse_in_packet_test_go - 2016.08.16 at 15h 30m 51s.xml">
+      <configuration name="TestResponse in packet_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestResponse_in_packet_test_go - 2016.08.16 at 15h 31m 20s.xml">
+      <configuration name="TestResponse in packet_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestResponse_in_packet_test_go - 2016.08.16 at 15h 31m 37s.xml">
+      <configuration name="TestResponse in packet_test.go" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestResponse_in_packet_test_go - 2016.08.16 at 15h 32m 16s.xml">
+      <configuration name="TestResponse in packet_test.go" configurationId="GoTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -702,10 +715,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.121875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -715,9 +728,36 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -732,7 +772,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -741,123 +781,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utils/math.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/slice.go" />
-    <entry file="file://$PROJECT_DIR$/utils/list.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/section_identification.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-771">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/writer_packet.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/section_authentication.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/section_module.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/section_supported.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
-          <caret line="80" column="20" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/math/rand/rand.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="190" column="5" selection-start-line="190" selection-start-column="5" selection-end-line="190" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Go/src/time/time.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="826" column="14" selection-start-line="826" selection-start-column="14" selection-end-line="826" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/packet_request.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/section_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="25" column="28" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
-          <folding>
-            <element signature="e#14#143#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/packet_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="71" column="22" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/badtelematics/value_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/section_module_property.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
-          <folding>
-            <element signature="e#20#43#0" expanded="false" />
-            <element signature="e#902#1354#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -865,25 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/reader.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="104" column="17" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
-          <folding>
-            <element signature="e#20#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/flags.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -891,7 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-612">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,9 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="e#73#114#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -909,35 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/module_property_value.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/reader_packet.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!block;n#ReadRequest#0" expanded="false" />
-            <element signature="n#!!block;n#ReadResponse#0" expanded="false" />
-            <element signature="n#!!block;n#ReadIdentification#0" expanded="false" />
-            <element signature="n#!!block;n#ReadAuthentication#0" expanded="false" />
-            <element signature="n#!!block;n#ReadModule#0" expanded="false" />
-            <element signature="n#!!block;n#readModuleProperty#0" expanded="false" />
-            <element signature="n#!!block;n#readModulePropertyValue#0" expanded="false" />
-            <element signature="n#!!block;n#readModulePropertyDisable#0" expanded="false" />
-            <element signature="n#!!block;n#readCommand#0" expanded="false" />
-            <element signature="n#!!block;n#readCommandArgument#0" expanded="false" />
-            <element signature="n#!!block;n#readCommandExecute#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -945,10 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!block;n#readData#0" expanded="false" />
-            <element signature="n#!!block;n#writeData#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -956,9 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#40#1985#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,59 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#393#510#0" expanded="false" />
-            <element signature="n#!!block;n#Reset#0" expanded="false" />
-            <element signature="n#!!block;n#NewConfiguration#0" expanded="false" />
-            <element signature="n#!!block;n#SetModule#0" expanded="false" />
-            <element signature="n#!!block;n#GetModule#0" expanded="false" />
-            <element signature="n#!!block;n#Modules#0" expanded="false" />
-            <element signature="n#!!block;n#SetProperty#0" expanded="false" />
-            <element signature="n#!!block;n#GetProperty#0" expanded="false" />
-            <element signature="n#!!block;n#Properties#0" expanded="false" />
-            <element signature="n#!!block;n#SetCommand#0" expanded="false" />
-            <element signature="n#!!block;n#GetCommand#0" expanded="false" />
-            <element signature="n#!!block;n#Commands#0" expanded="false" />
-            <element signature="n#!!block;n#SetArgument#0" expanded="false" />
-            <element signature="n#!!block;n#GetArgument#0" expanded="false" />
-            <element signature="n#!!block;n#Arguments#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/badtelematics/packet.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/dataType.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="372" column="70" selection-start-line="372" selection-start-column="70" selection-end-line="372" selection-end-column="70" />
-          <folding>
-            <element signature="e#20#104#0" expanded="true" />
-            <element signature="n#!!block;n#readData#0" expanded="false" />
-            <element signature="n#!!block;n#writeData#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/conf.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="54" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/module.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,39 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/value/name.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/value/rgb.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/value/datatype.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/value/gps.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,15 +848,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/value/common.go">
+    <entry file="file://$PROJECT_DIR$/telematics/value/name.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="102">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/value/rgb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/value_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="896">
+          <caret line="567" column="19" selection-start-line="567" selection-start-column="19" selection-end-line="567" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/reader_packet.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5617">
+          <caret line="21" column="36" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/reader.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2454">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1082,93 +890,387 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/value_test.go">
+    <entry file="file://$PROJECT_DIR$/telematics/value/common.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="306">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/section_module_property.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/packet.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/packet_request.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1876">
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/checksum.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="215">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/identification.go">
+    <entry file="file://$PROJECT_DIR$/badtelematics/section_supported.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-295">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="41" column="51" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/writer_packet.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1224">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/section_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4536">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/badtelematics/packet_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-482">
+          <caret line="71" column="22" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/testing/testing.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="472" column="0" selection-start-line="472" selection-start-column="0" selection-end-line="472" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/authentication.go">
+    <entry file="file://$PROJECT_DIR$/telematics/reader.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/command.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/command_argument.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="151">
+          <caret line="108" column="32" selection-start-line="108" selection-start-column="32" selection-end-line="108" selection-end-column="32" />
           <folding>
-            <element signature="e#17#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/command_execution.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/section/module_property.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#17#74#0" expanded="true" />
+            <element signature="n#!!block;n#ReadBoolean#0" expanded="false" />
+            <element signature="n#!!block;n#ReadInt24#0" expanded="false" />
+            <element signature="n#!!block;n#ReadUInt24#0" expanded="false" />
+            <element signature="n#!!block;n#ReadBytes#0" expanded="false" />
+            <element signature="n#!!block;n#ReadString#0" expanded="false" />
+            <element signature="n#!!block;n#ReadCommon#0" expanded="false" />
+            <element signature="n#!!block;n#ReadGsm#0" expanded="false" />
+            <element signature="n#!!block;n#ReadAcceleration#0" expanded="false" />
+            <element signature="n#!!block;n#ReadRgb#0" expanded="false" />
+            <element signature="n#!!block;n#ReadNameValue#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/telematics/section/supported.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="202">
+          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+          <folding>
+            <element signature="e#62#87#0" expanded="false" />
+            <element signature="n#!!block;n#Support#0" expanded="false" />
+            <element signature="n#!!block;n#IsSupported#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/bytes/buffer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="47" column="17" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#20#110#0" expanded="true" />
+            <element signature="n#!!block;n#Test_Identification#0" expanded="false" />
+            <element signature="n#!!block;n#Test_Authentication#0" expanded="false" />
+            <element signature="n#!!block;n#Test_Module#0" expanded="false" />
+            <element signature="n#!!block;n#Test_ModuleProperty#0" expanded="false" />
+            <element signature="n#!!block;n#Test_ModulePropertyValue#0" expanded="false" />
+            <element signature="n#!!block;n#Test_ModulePropertyDisabled#0" expanded="false" />
+            <element signature="n#!!block;n#Test_Command#0" expanded="false" />
+            <element signature="n#!!block;n#Test_CommandArgument#0" expanded="false" />
+            <element signature="n#!!block;n#Test_CommandExecute#0" expanded="false" />
+            <element signature="n#!!block;n#Test_Supported#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/command_execution.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#17#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/module_property_disabled.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#17#29#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/authentication.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/types.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="48" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/flags.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!block;n#Has#0" expanded="false" />
+            <element signature="n#!!block;n#Set#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/value/datatype.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/module.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/command_argument.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/value/gps.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/module_property_value.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/conf.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <element signature="e#20#70#0" expanded="true" />
+            <element signature="n#!!block;n#GetArgument#0" expanded="false" />
+            <element signature="n#!!block;n#Validate#0" expanded="false" />
+            <element signature="n#!!block;n#String#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/command.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/section/identification.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+          <folding>
+            <element signature="e#100#453#0" expanded="false" />
+            <element signature="e#479#758#0" expanded="false" />
+            <element signature="n#!!block;n#String#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/request.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#20#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/reader_section.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="126" column="9" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
+          <folding>
+            <element signature="e#20#135#0" expanded="true" />
+            <element signature="e#137#214#0" expanded="false" />
+            <element signature="n#!!block;n#ReadPacket#0" expanded="false" />
+            <element signature="e#906#930#0" expanded="false" />
+            <element signature="e#1013#1038#0" expanded="false" />
+            <element signature="e#1141#1193#0" expanded="false" />
+            <element signature="e#1196#1371#0" expanded="false" />
+            <element signature="e#1374#1551#0" expanded="false" />
+            <element signature="e#1554#1710#0" expanded="false" />
+            <element signature="e#1713#1836#0" expanded="false" />
+            <element signature="e#1839#1996#0" expanded="false" />
+            <element signature="e#1999#2127#0" expanded="false" />
+            <element signature="e#2130#2288#0" expanded="false" />
+            <element signature="e#2291#2496#0" expanded="false" />
+            <element signature="e#2499#2693#0" expanded="false" />
+            <element signature="e#2696#2839#0" expanded="false" />
+            <element signature="e#2842#2901#0" expanded="false" />
+            <element signature="n#!!block;n#ReadIdentification#0" expanded="false" />
+            <element signature="n#!!block;n#ReadAuthentication#0" expanded="false" />
+            <element signature="n#!!block;n#ReadModule#0" expanded="false" />
+            <element signature="n#!!block;n#ReadModuleProperty#0" expanded="false" />
+            <element signature="n#!!block;n#ReadModulePropertyDisable#0" expanded="false" />
+            <element signature="n#!!block;n#ReadCommand#0" expanded="false" />
+            <element signature="n#!!block;n#ReadCommandArgument#0" expanded="false" />
+            <element signature="n#!!block;n#ReadCommandExecute#0" expanded="false" />
+            <element signature="n#!!block;n#ReadSupported#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/dataType.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+          <folding>
+            <element signature="e#187#247#0" expanded="false" />
+            <element signature="e#249#339#0" expanded="false" />
+            <element signature="e#341#430#0" expanded="false" />
+            <element signature="e#432#523#0" expanded="false" />
+            <element signature="e#525#618#0" expanded="false" />
+            <element signature="e#620#680#0" expanded="false" />
+            <element signature="e#682#745#0" expanded="false" />
+            <element signature="e#747#836#0" expanded="false" />
+            <element signature="n#!!block;n#WriteData#0" expanded="false" />
+            <element signature="e#5570#5610#0" expanded="false" />
+            <element signature="e#5612#5685#0" expanded="false" />
+            <element signature="e#5687#5759#0" expanded="false" />
+            <element signature="e#5761#5835#0" expanded="false" />
+            <element signature="e#5837#5913#0" expanded="false" />
+            <element signature="e#5915#5958#0" expanded="false" />
+            <element signature="e#5960#6006#0" expanded="false" />
+            <element signature="e#6008#6080#0" expanded="false" />
+            <element signature="e#6082#6156#0" expanded="false" />
+            <element signature="e#6158#6231#0" expanded="false" />
+            <element signature="e#6233#6308#0" expanded="false" />
+            <element signature="e#6310#6386#0" expanded="false" />
+            <element signature="e#6388#6465#0" expanded="false" />
+            <element signature="e#6467#6513#0" expanded="false" />
+            <element signature="e#6515#6560#0" expanded="false" />
+            <element signature="e#6562#6609#0" expanded="false" />
+            <element signature="e#6611#6656#0" expanded="false" />
+            <element signature="e#6658#6699#0" expanded="false" />
+            <element signature="e#6701#6742#0" expanded="false" />
+            <element signature="e#6744#6785#0" expanded="false" />
+            <element signature="e#6787#6829#0" expanded="false" />
+            <element signature="e#6831#6872#0" expanded="false" />
+            <element signature="e#6874#6918#0" expanded="false" />
+            <element signature="e#6920#6964#0" expanded="false" />
+            <element signature="e#6966#7007#0" expanded="false" />
+            <element signature="e#7009#7050#0" expanded="false" />
+            <element signature="e#7052#7093#0" expanded="false" />
+            <element signature="e#7095#7174#0" expanded="false" />
+            <element signature="e#7176#7287#0" expanded="false" />
+            <element signature="e#7289#7411#0" expanded="false" />
+            <element signature="e#7413#7539#0" expanded="false" />
+            <element signature="e#7541#7666#0" expanded="false" />
+            <element signature="e#7668#7785#0" expanded="false" />
+            <element signature="e#7787#7905#0" expanded="false" />
+            <element signature="e#7907#8020#0" expanded="false" />
+            <element signature="e#8022#8098#0" expanded="false" />
+            <element signature="e#8100#8279#0" expanded="false" />
+            <element signature="e#8281#8389#0" expanded="false" />
+            <element signature="e#8391#8507#0" expanded="false" />
+            <element signature="e#8509#8601#0" expanded="false" />
+            <element signature="e#8603#8654#0" expanded="false" />
+            <element signature="e#8656#8775#0" expanded="false" />
+            <element signature="e#8777#8847#0" expanded="false" />
+            <element signature="e#8849#9148#0" expanded="false" />
+            <element signature="e#9150#9449#0" expanded="false" />
+            <element signature="e#9451#9748#0" expanded="false" />
+            <element signature="e#9750#10046#0" expanded="false" />
+            <element signature="e#10048#10343#0" expanded="false" />
+            <element signature="e#10345#10639#0" expanded="false" />
+            <element signature="e#10641#10936#0" expanded="false" />
+            <element signature="e#10938#11126#0" expanded="false" />
+            <element signature="e#11128#11426#0" expanded="false" />
+            <element signature="e#11428#11592#0" expanded="false" />
+            <element signature="e#11594#11651#0" expanded="false" />
+            <element signature="e#11653#11710#0" expanded="false" />
+            <element signature="e#11712#11796#0" expanded="false" />
+            <element signature="e#11798#11855#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/telematics/writer.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        <state relative-caret-position="170">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="14" />
           <folding>
-            <element signature="e#137#193#0" expanded="false" />
-            <element signature="n#!!block;n#NewWriter#0" expanded="false" />
             <element signature="n#!!block;n#WriteBool#0" expanded="false" />
             <element signature="n#!!block;n#WriteInt24#0" expanded="false" />
             <element signature="n#!!block;n#WriteUInt24#0" expanded="false" />
@@ -1185,34 +1287,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/reader.go">
+    <entry file="file://$PROJECT_DIR$/telematics/writer_packet.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="70" column="37" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
+        <state relative-caret-position="117">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#Configure#0" expanded="false" />
-            <element signature="n#!!block;n#skip#0" expanded="false" />
-            <element signature="n#!!block;n#ReadBoolean#0" expanded="false" />
-            <element signature="n#!!block;n#ReadInt24#0" expanded="false" />
-            <element signature="n#!!block;n#ReadUInt24#0" expanded="false" />
-            <element signature="n#!!block;n#ReadBytes#0" expanded="false" />
-            <element signature="n#!!block;n#ReadString#0" expanded="false" />
-            <element signature="n#!!block;n#ReadCommon#0" expanded="false" />
-            <element signature="n#!!block;n#ReadGps#0" expanded="false" />
-            <element signature="n#!!block;n#ReadGsm#0" expanded="false" />
-            <element signature="n#!!block;n#ReadAcceleration#0" expanded="false" />
-            <element signature="n#!!block;n#ReadRgb#0" expanded="false" />
-            <element signature="n#!!block;n#ReadNameValue#0" expanded="false" />
-            <element signature="n#!!block;n#ReadNameValues#0" expanded="false" />
+            <element signature="n#!!block;n#WriteRequest#0" expanded="false" />
+            <element signature="n#!!block;n#WriteIdentification#0" expanded="false" />
+            <element signature="n#!!block;n#WriteAuthentication#0" expanded="false" />
+            <element signature="n#!!block;n#WriteModule#0" expanded="false" />
+            <element signature="n#!!block;n#WriteModuleProperty#0" expanded="false" />
+            <element signature="n#!!block;n#WriteModulePropertyValue#0" expanded="false" />
+            <element signature="n#!!block;n#WriteModulePropertyDisable#0" expanded="false" />
+            <element signature="n#!!block;n#WriteCommand#0" expanded="false" />
+            <element signature="n#!!block;n#WriteCommandArgument#0" expanded="false" />
+            <element signature="n#!!block;n#WriteCommandExecute#0" expanded="false" />
+            <element signature="n#!!block;n#writeSupported#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/telematics/reader_section.go">
+    <entry file="file://$PROJECT_DIR$/telematics/section/module_property.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="211" column="58" selection-start-line="211" selection-start-column="58" selection-end-line="211" selection-end-column="58" />
+        <state relative-caret-position="385">
+          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/response.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telematics/packet_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#20#130#0" expanded="true" />
+            <element signature="n#!!block;n#TestPacket1#0" expanded="false" />
+            <element signature="n#!!block;n#TestPacket2#0" expanded="false" />
+            <element signature="n#!!block;n#TestPacket3#0" expanded="false" />
+            <element signature="n#!!block;n#TestResponse#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

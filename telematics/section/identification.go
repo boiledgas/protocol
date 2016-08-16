@@ -1,21 +1,12 @@
 package section
 
 import (
+	"bytes"
+	"fmt"
 	"protocol/utils"
 )
 
 type DeviceType byte
-
-var deviceTypes []byte = []byte{
-	byte(DEVICETYPE_NOTSPECIFIED),
-	byte(DEVICETYPE_APPLICATION),
-	byte(DEVICETYPE_PERSONAL),
-	byte(DEVICETYPE_STATIONARY),
-	byte(DEVICETYPE_CAR),
-	byte(DEVICETYPE_CAROBD),
-	byte(DEVICETYPE_CARSOCKET),
-	byte(DEVICETYPE_CARBEACON),
-}
 
 // device type
 const (
@@ -40,11 +31,39 @@ const (
 )
 
 type Identification struct {
-	Flag       utils.Flags8
-	Code       uint32
-	CodeText   string
-	DeviceType DeviceType
-	Firmware   int16
-	Hardware   int16
-	Hash       byte
+	utils.Flags8
+	Code     uint32
+	CodeText string
+	Type     DeviceType
+	Firmware int16
+	Hardware int16
+	Hash     byte
+}
+
+func (s Identification) String() string {
+	var buf bytes.Buffer
+	buf.WriteString("Identification {")
+	var flags [8]byte
+	s.Load(&flags)
+	for _, flag := range flags {
+		if flag == 0 {
+			continue
+		}
+		switch flag {
+		case IDENTIFICATION_FLAGS_CODE:
+			buf.WriteString(fmt.Sprintf("Code: %v; ", s.Code))
+		case IDENTIFICATION_FLAGS_CODETEXT:
+			buf.WriteString(fmt.Sprintf("CodeText: %v; ", s.CodeText))
+		case IDENTIFICATION_FLAGS_DEVICETYPE:
+			buf.WriteString(fmt.Sprintf("Type: %v; ", s.Type))
+		case IDENTIFICATION_FLAGS_FIRMWARE:
+			buf.WriteString(fmt.Sprintf("Firmware: %v; ", s.Firmware))
+		case IDENTIFICATION_FLAGS_HARDWARE:
+			buf.WriteString(fmt.Sprintf("Hardware: %v; ", s.Hardware))
+		case IDENTIFICATION_FLAGS_DEVICEHASH:
+			buf.WriteString(fmt.Sprintf("Hash: %v; ", s.Hash))
+		}
+	}
+	buf.WriteString("}")
+	return buf.String()
 }

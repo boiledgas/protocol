@@ -1,6 +1,10 @@
 package value
 
-import "protocol/utils"
+import (
+	"protocol/utils"
+	"bytes"
+	"fmt"
+)
 
 // gpsData flags
 const (
@@ -19,4 +23,24 @@ type Gps struct {
 	Speed     byte
 	Course    byte
 	Sat       byte
+}
+
+func (v Gps) String() string {
+	var buf bytes.Buffer
+	if v.Has(GPS_FLAG_LATLNG) {
+		buf.WriteString(fmt.Sprintf("Lat:%v; Lng:%v; ", v.Latitude, v.Longitude))
+	}
+	if v.Has(GPS_FLAG_ALTITUDE) {
+		buf.WriteString(fmt.Sprintf("Altitude:%v; ", v.Altitude))
+	}
+	if v.Has(GPS_FLAG_SPEED) {
+		buf.WriteString(fmt.Sprintf("Speed:%v; ", v.Speed))
+	}
+	if v.Has(GPS_FLAG_COURSE) {
+		buf.WriteString(fmt.Sprintf("Course:%v; ", v.Course))
+	}
+	if v.Has(GPS_FLAG_SATELLITES) {
+		buf.WriteString(fmt.Sprintf("Sat:%v; ", v.Sat))
+	}
+	return buf.String()
 }

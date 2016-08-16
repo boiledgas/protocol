@@ -1,6 +1,9 @@
 package section
 
-import "protocol/utils"
+import (
+	"fmt"
+	"protocol/utils"
+)
 
 // module flags
 const (
@@ -13,4 +16,8 @@ type Module struct {
 	Id          byte
 	Name        string
 	Description string
+}
+
+func (m Module) String() string {
+	return fmt.Sprintf("{Id:%v; Name:%v}", m.Id, m.Name)
 }

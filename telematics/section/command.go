@@ -1,5 +1,10 @@
 package section
 
+import (
+	"protocol/utils"
+	"fmt"
+)
+
 // command flags
 const (
 	COMMAND_FLAGS_NAME        byte = 0x01
@@ -7,8 +12,13 @@ const (
 )
 
 type Command struct {
-	moduleId    byte
-	id          byte
-	name        string
-	description string
+	utils.Flags8
+	ModuleId    byte
+	Id          byte
+	Name        string
+	Description string
+}
+
+func (c Command) String() string {
+	return fmt.Sprintf("{ModuleId:%v; Id:%v; Name:%v}", c.ModuleId, c.Id, c.Name)
 }

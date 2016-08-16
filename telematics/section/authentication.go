@@ -1,6 +1,9 @@
 package section
 
-import "protocol/utils"
+import (
+	"protocol/utils"
+	"fmt"
+)
 
 // authentication flags
 const (
@@ -12,4 +15,8 @@ type Authentication struct {
 	utils.Flags8
 	Identifier string
 	Secret     []byte
+}
+
+func (s Authentication) String() string {
+	return fmt.Sprintf("%v", s)
 }

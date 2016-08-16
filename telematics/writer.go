@@ -9,17 +9,14 @@ import (
 )
 
 type TelematicsWriter struct {
-	Writer   io.Writer
-	Checksum *utils.Checksum
+	Writer        io.Writer
+	Checksum      utils.Checksum
+	Configuration *Configuration
 }
 
-func NewWriter(w io.Writer, c *Configuration) *TelematicsWriter {
-	if c == nil {
-		c = NewConfiguration()
-	}
-
-	checksum := utils.Checksum{Table: utils.CRC8}
-	writer := io.MultiWriter(w, checksum)
+func NewWriter(w io.Writer) *TelematicsWriter {
+	checksum := utils.Checksum{Table: utils.CRC8[:]}
+	writer := io.MultiWriter(w, &checksum)
 	return &TelematicsWriter{Writer: writer, Checksum: checksum}
 }
 
@@ -86,7 +83,7 @@ func (w *TelematicsWriter) WriteNameValue(v *value.NameValue, dataType value.Dat
 	}
 
 	w.WriteString(v.Name)
-	w.writeData(v.Value, dataType)
+	w.WriteData(v.Value, dataType)
 }
 
 func (w *TelematicsWriter) WriteNameList(list []value.NameValue, dataType value.DataType) {
