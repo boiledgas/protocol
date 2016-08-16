@@ -68,7 +68,7 @@ func TestPacket3(t *testing.T) {
 	reader := NewReader(&buf)
 	for {
 		var pt byte
-		if err := binary.Read(reader.reader, binary.BigEndian, &pt); err != nil {
+		if err := reader.ReadByte(&pt); err != nil {
 			break
 		}
 		if pt != PACKET_TYPE_REQUEST {

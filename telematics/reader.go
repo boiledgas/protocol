@@ -57,6 +57,11 @@ func (r *TelematicsReader) ReadUInt24(v *uint32) {
 	*v = uint32(x)
 }
 
+func (r *TelematicsReader) ReadByte(v *byte) (err error) {
+	err = binary.Read(r.reader, binary.BigEndian, v)
+	return
+}
+
 //bad method
 func (r *TelematicsReader) ReadBytes() []byte {
 	var c byte
