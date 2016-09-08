@@ -7,22 +7,24 @@ import (
 	"protocol/telematics/value"
 )
 
-func (w *TelematicsWriter) WriteResponse(p *Response) {
-	binary.Write(w.Writer, binary.LittleEndian, PACKET_TYPE_RESPONSE)
-	binary.Write(w.Writer, binary.LittleEndian, p.Sequence)
-	binary.Write(w.Writer, binary.LittleEndian, p.Flags)
+func (w *TelematicsWriter) WriteResponse(p *Response) (err error) {
+	//TODO: if check for error: short write
+	binary.Write(w.Writer, binary.LittleEndian, []byte{PACKET_TYPE_RESPONSE, p.Sequence, byte(p.Flags)})
 	p.Crc = w.Checksum.Compute()
 	binary.Write(w.Writer, binary.LittleEndian, p.Crc)
+	return
 }
 
-func (w *TelematicsWriter) WriteRequest(p *Request) {
-	binary.Write(w.Writer, binary.LittleEndian, PACKET_TYPE_REQUEST)
-	binary.Write(w.Writer, binary.LittleEndian, byte(0x02))
-	binary.Write(w.Writer, binary.LittleEndian, p.Sequence)
+func (w *TelematicsWriter) WriteRequest(p *Request) (err error) {
+	//TODO: if check for error: short write
+	binary.Write(w.Writer, binary.LittleEndian, []byte{PACKET_TYPE_REQUEST, byte(0x02), p.Sequence})
 	binary.Write(w.Writer, binary.LittleEndian, p.Timestamp)
 	var flags [16]uint16
 	p.Load(&flags)
 	for _, flag := range flags {
+		if flag == 0 {
+			continue
+		}
 		t := section.ToSectionType(flag)
 		switch t {
 		case section.SECTION_IDENTIFICATION:
@@ -79,6 +81,7 @@ func (w *TelematicsWriter) WriteRequest(p *Request) {
 	binary.Write(w.Writer, binary.LittleEndian, section.SECTION_ENDOFPAYLOAD)
 	crc := w.Checksum.Compute()
 	binary.Write(w.Writer, binary.LittleEndian, crc)
+	return
 }
 
 func (w *TelematicsWriter) WriteIdentification(s *section.Identification) {

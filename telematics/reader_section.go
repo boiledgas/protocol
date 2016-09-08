@@ -2,10 +2,10 @@ package telematics
 
 import (
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"protocol/telematics/section"
 	"protocol/telematics/value"
-	"receiver/errors"
 )
 
 const (
@@ -13,30 +13,42 @@ const (
 	PACKET_TYPE_RESPONSE byte = 0xCC
 )
 
-func (r *TelematicsReader) ReadPacket() interface{} {
+func (r *TelematicsReader) Read(packet *Packet) (err error) {
 	var pt byte
-	if err := binary.Read(r.reader, binary.BigEndian, &pt); err != nil {
-		panic(err)
+	if err = r.ReadByte(&pt); err != nil {
+		return
 	}
-
 	switch pt {
 	case PACKET_TYPE_REQUEST:
-		request := Request{}
-		r.ReadRequest(&request)
-		return request
+		if err = r.readRequest(&packet.Request); err != nil {
+			return
+		}
+		packet.Set(FLAG_REQUEST, true)
 	case PACKET_TYPE_RESPONSE:
-		response := Response{}
-		r.ReadResponse(&response)
-		return response
-	default:
-		panic(fmt.Sprintf("packet type %x not supported", pt))
+		if err = r.readResponse(&packet.Response); err != nil {
+			return
+		}
+		packet.Set(FLAG_RESPONSE, true)
 	}
+	return
 }
 
 func (r *TelematicsReader) ReadRequest(req *Request) (err error) {
-	var v byte
-	binary.Read(r.reader, binary.LittleEndian, &v)
-	if v != 2 {
+	var pt byte
+	if err := binary.Read(r.reader, binary.BigEndian, &pt); err != nil {
+		return err
+	}
+	if pt != PACKET_TYPE_REQUEST {
+		return errors.New("Not request packet")
+	}
+	err = r.readRequest(req)
+	return
+}
+
+func (r *TelematicsReader) readRequest(req *Request) (err error) {
+	var version byte
+	binary.Read(r.reader, binary.LittleEndian, &version)
+	if version != 2 {
 		panic("version not supported")
 	}
 
@@ -119,6 +131,18 @@ sections:
 }
 
 func (r *TelematicsReader) ReadResponse(response *Response) (err error) {
+	var pt byte
+	if err := binary.Read(r.reader, binary.BigEndian, &pt); err != nil {
+		return err
+	}
+	if pt != PACKET_TYPE_RESPONSE {
+		return errors.New("Not response packet")
+	}
+	r.readResponse(response)
+	return
+}
+
+func (r *TelematicsReader) readResponse(response *Response) (err error) {
 	if err = binary.Read(r.reader, binary.LittleEndian, &response.Sequence); err != nil {
 		panic("sequence")
 	}
