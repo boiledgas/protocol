@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"protocol/telematics/section"
-	"protocol/telematics/value"
+	"github.com/boiledgas/protocol/telematics/section"
+	"github.com/boiledgas/protocol/telematics/value"
 )
 
 const (

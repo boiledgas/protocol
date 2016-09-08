@@ -3,8 +3,8 @@ package telematics
 import (
 	"encoding/binary"
 	"fmt"
-	"protocol/telematics/section"
-	"protocol/telematics/value"
+	"github.com/boiledgas/protocol/telematics/section"
+	"github.com/boiledgas/protocol/telematics/value"
 )
 
 func (w *TelematicsWriter) WriteResponse(p *Response) (err error) {

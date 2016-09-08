@@ -1,7 +1,7 @@
 package telematics
 
 import (
-	"protocol/telematics/section"
+	"github.com/boiledgas/protocol/telematics/section"
 	"bytes"
 )
 

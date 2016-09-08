@@ -1,8 +1,8 @@
 package telematics
 
 import (
-	"protocol/telematics/section"
-	"protocol/utils"
+	"github.com/boiledgas/protocol/telematics/section"
+	"github.com/boiledgas/protocol/utils"
 	"sync/atomic"
 	"bytes"
 )

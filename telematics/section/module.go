@@ -2,7 +2,7 @@ package section
 
 import (
 	"fmt"
-	"protocol/utils"
+	"github.com/boiledgas/protocol/utils"
 )
 
 // module flags

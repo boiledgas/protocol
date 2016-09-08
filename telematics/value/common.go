@@ -1,6 +1,6 @@
 package value
 
-import "protocol/utils"
+import "github.com/boiledgas/protocol/utils"
 
 const (
 	COMMON_FLAG_STATE      byte = 0x01

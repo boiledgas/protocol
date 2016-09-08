@@ -1,6 +1,6 @@
 package telematics
 
-import "protocol/utils"
+import "github.com/boiledgas/protocol/utils"
 
 const (
 	FLAG_REQUEST  byte = 0x01

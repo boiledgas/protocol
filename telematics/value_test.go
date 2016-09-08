@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 	"time"
-	"protocol/telematics/value"
+	"github.com/boiledgas/protocol/telematics/value"
 )
 
 func Test_Bool(t *testing.T) {

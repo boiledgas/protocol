@@ -1,6 +1,6 @@
 package value
 
-import "protocol/utils"
+import "github.com/boiledgas/protocol/utils"
 
 const (
 	ACCELERATION_FLAG_X        byte = 0x01

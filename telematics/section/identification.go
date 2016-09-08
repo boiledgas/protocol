@@ -3,7 +3,7 @@ package section
 import (
 	"bytes"
 	"fmt"
-	"protocol/utils"
+	"github.com/boiledgas/protocol/utils"
 )
 
 type DeviceType byte

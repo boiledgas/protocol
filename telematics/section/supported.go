@@ -1,7 +1,7 @@
 package section
 
 import (
-	"protocol/utils"
+	"github.com/boiledgas/protocol/utils"
 )
 
 type Supported struct {

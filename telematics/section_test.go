@@ -2,8 +2,8 @@ package telematics
 
 import (
 	"bytes"
-	"protocol/telematics/section"
-	"protocol/telematics/value"
+	"github.com/boiledgas/protocol/telematics/section"
+	"github.com/boiledgas/protocol/telematics/value"
 	"testing"
 )
 

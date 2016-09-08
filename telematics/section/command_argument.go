@@ -2,8 +2,8 @@ package section
 
 import (
 	"fmt"
-	"protocol/telematics/value"
-	"protocol/utils"
+	"github.com/boiledgas/protocol/telematics/value"
+	"github.com/boiledgas/protocol/utils"
 )
 
 // command argument flags

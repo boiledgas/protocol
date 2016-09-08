@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"log"
-	"protocol/telematics/section"
+	"github.com/boiledgas/protocol/telematics/section"
 	"testing"
 )
 

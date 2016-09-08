@@ -1,7 +1,7 @@
 package value
 
 import (
-	"protocol/utils"
+	"github.com/boiledgas/protocol/utils"
 	"bytes"
 	"fmt"
 )

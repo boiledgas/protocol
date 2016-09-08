@@ -3,8 +3,8 @@ package telematics
 import (
 	"encoding/binary"
 	"io"
-	"protocol/telematics/value"
-	"protocol/utils"
+	"github.com/boiledgas/protocol/telematics/value"
+	"github.com/boiledgas/protocol/utils"
 	"strconv"
 )
 
